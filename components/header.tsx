@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { ProModal } from "@/components/modal/pro-modal";
+import { AuthModal } from "@/components/modal/auth-modal";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export const Header = () => {
   const [showMembership, setShowMembership] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
   return (
@@ -28,6 +30,12 @@ export const Header = () => {
             PRO가입
           </button>
           <button
+            onClick={() => setShowAuth(true)}
+            className="hover:text-gray-300 transition-colors"
+          >
+            로그인
+          </button>
+          <button
             onClick={() => {
               const params = new URLSearchParams(searchParams);
               params.set("tab", "inquiry");
@@ -43,6 +51,7 @@ export const Header = () => {
         showMembership={showMembership}
         setShowMembership={setShowMembership}
       />
+      <AuthModal isOpen={showAuth} onClose={() => setShowAuth(false)} />
     </header>
   );
 };
