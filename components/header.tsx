@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ProModal } from "@/components/modal/pro-modal";
 import { AuthModal } from "@/components/modal/auth-modal";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "react-day-picker";
 
 export const Header = () => {
   const [showMembership, setShowMembership] = useState(false);
@@ -17,7 +18,16 @@ export const Header = () => {
           <div className="bg-white text-black px-3 py-1 rounded font-bold text-xl">
             9W
           </div>
-          <span className="text-xl font-bold">나인위닛</span>
+
+          <button
+            onClick={() => {
+              const params = new URLSearchParams(searchParams);
+
+              router.push("/");
+            }}
+          >
+            <span className="text-xl font-bold">나인위닛</span>
+          </button>
         </div>
         <nav className="flex space-x-6">
           <button className="hover:text-gray-300 transition-colors">
@@ -34,6 +44,15 @@ export const Header = () => {
             className="hover:text-gray-300 transition-colors"
           >
             로그인
+          </button>
+          <button
+            onClick={() => {
+              const params = new URLSearchParams(searchParams);
+
+              router.push("mypage");
+            }}
+          >
+            마이페이지
           </button>
           <button
             onClick={() => {

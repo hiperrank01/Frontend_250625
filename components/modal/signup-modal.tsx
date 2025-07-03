@@ -79,7 +79,7 @@ export function SignUpModal({
         </div>
         <div className="mt-4">
           <Button variant="outline" className="w-full">
-            Sign in with Google
+            Google로 시작하기
           </Button>
         </div>
         <DialogFooter>
