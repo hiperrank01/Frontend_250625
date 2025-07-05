@@ -90,7 +90,12 @@ export const ServiceSection = ({ setShowMembership }: ServiceSectionProps) => {
                   <h3 className="text-lg font-semibold mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  <p className="text-gray-600 mb-4 ">{service.description}</p>
+                  <p className="text-base font-medium text-gray-800 leading-relaxed break-words">
+                    {service.text}
+                    <br />
+                    {service.text2}
+                  </p>
                   <Button onClick={() => setShowMembership(true)}>
                     PRO 기능 이용하기
                   </Button>

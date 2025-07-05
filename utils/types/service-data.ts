@@ -5,4 +5,6 @@ export type SERVICE_TYPE = {
   title: string;
   icon: ReactElement;
   description: string;
+  text?: string;
+  text2?: string;
 }[];

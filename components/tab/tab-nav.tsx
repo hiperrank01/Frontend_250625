@@ -20,7 +20,7 @@ export const TabNav = ({ onTabChange }: TabNavProps) => {
   };
 
   return (
-    <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 mb-8">
+    <TabsList className="grid w-full grid-cols-4 lg:grid-cols-6 mb-8">
       {services.map((service) => (
         <TabsTrigger
           key={service.id}
