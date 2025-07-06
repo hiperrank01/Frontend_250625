@@ -11,12 +11,13 @@ export const Footer = () => {
               <span className="text-xl font-bold">나인위닛</span>
             </div>
             <p className="text-gray-400">스마트스토어 SEO 최적화 전문 서비스</p>
+            <p>서비스 데이터 분석 기반 매출 최적화 전문</p>
           </div>
           <div className="space-y-2 text-sm text-gray-400">
-            <p>주소: 구미시 공단동264-8 금오빌딩506-2호</p>
+            <p>주소: 주소 수원시 세류동 482-7 501호</p>
             <p>전화: 010-4590-4917</p>
-            <p>이메일: 9winit@gmail.com</p>
-            <p>사업자번호: 649-02-03465</p>
+            <p>이메일:9winit01@gmail.com</p>
+            <p>사업자번호: 246-17-02470</p>
             <p>대표: 배대근</p>
           </div>
         </div>

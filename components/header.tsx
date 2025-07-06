@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ProModal } from "@/components/modal/pro-modal";
 import { AuthModal } from "@/components/modal/auth-modal";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Button } from "react-day-picker";
 
 export const Header = () => {
   const [showMembership, setShowMembership] = useState(false);
@@ -30,7 +29,13 @@ export const Header = () => {
           </button>
         </div>
         <nav className="flex space-x-6">
-          <button className="hover:text-gray-300 transition-colors">
+          <button
+            className="hover:text-gray-300 transition-colors"
+            onClick={() => {
+              const params = new URLSearchParams(searchParams);
+              router.push("info");
+            }}
+          >
             서비스 소개
           </button>
           <button
