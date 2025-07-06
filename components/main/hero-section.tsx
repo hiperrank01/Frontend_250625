@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import mainLogo from "@/public/Logo_Main.png";
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -17,11 +17,11 @@ export default function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h1 className="text-4xl md:text-4xl font-bold text-black mb-6 leading-tight">
-            스마트스토어 SEO
+          <h1 className="text-2xl md:text-2xl font-bold text-black mb-2 leading-tight">
+            데이터 분석 기반
             <br />
-            <span className="bg-black text-white px-4 py-2 inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-              최적화 솔루션
+            <span className=" text-black px-4 py-0 inline-block">
+              매출 성장 최적화 전문 서비스
             </span>
           </h1>
         </div>
@@ -32,7 +32,7 @@ export default function HeroSection() {
           }`}
         >
           <p className="text-xl md:text-xl text-gray-600 mb-2 font-light">
-            데이터 기반 분석으로 매출 성장을 이끌어내는 전문 서비스
+            최적화 솔루션이터 기반 분석으로 매출 성장을 이끌어내는 전문 서비스
           </p>
         </div>
 
@@ -69,21 +69,18 @@ export default function HeroSection() {
           }`}
         >
           <div className="py-0 rounded-xl">
-            <p className="text-lg md:text-lg font-light mb-0 text-black leading-relaxed">
-              데이터 기반 분석으로 매출 성장을 이끌어내는 전문 서비스
-            </p>
-
             <p className="text-lg md:text-lg mb-0 text-black">
-              매체별 데이터 분석 기반 마케팅 전략 도출 전문 광고대행사
-              <span className="font-bold text-lg md:text-2xl text-black relative">
-                나인위닛
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-black transform scale-x-0 hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-              </span>
+              매체별 데이터 분석 기반 마케팅 전략 도출 전문 광고대행
             </p>
 
-            <p className="text-lg md:text-xl text-black ">
+            <p className="text-lg md:text-xl text-black mb-2">
               상품별/키워드별 자동화로 매출을 극대화해드립니다.
             </p>
+            <img
+              className="text-center block mx-auto"
+              src={mainLogo.src}
+              alt="나인위닛 로고"
+            />
           </div>
         </div>
 
@@ -93,12 +90,7 @@ export default function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="mt-3">
-            <p className="text-base md:text-lg  font-bold text-black ">
-              매체별 데이터 분석 기반 마케팅 전략 도출 전문 대행사
-              <span className="font-bold text-2xl "> 나인위닛</span>
-            </p>
-          </div>
+          <div className="mt-3"></div>
         </div>
       </div>
     </div>

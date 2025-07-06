@@ -11,7 +11,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Star, Download } from "lucide-react";
 import { services } from "@/data/service-data";
-
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
 interface ServiceSectionProps {
   setShowMembership: (show: boolean) => void;
 }
@@ -27,6 +32,7 @@ export const ServiceSection = ({ setShowMembership }: ServiceSectionProps) => {
                 {service.icon}
                 <span>{service.title}</span>
               </CardTitle>
+
               <CardDescription>{service.description}</CardDescription>
             </CardHeader>
             <CardContent>
@@ -91,11 +97,19 @@ export const ServiceSection = ({ setShowMembership }: ServiceSectionProps) => {
                     {service.title}
                   </h3>
                   <p className="text-gray-600 mb-4 ">{service.description}</p>
-                  <p className="text-base font-medium text-gray-800 leading-relaxed break-words">
-                    {service.text}
-                    <br />
-                    {service.text2}
+                  <p className="text-base font-medium text-gray-600 ">
+                    {service.text?.[0]?.content}
                   </p>
+
+                  <p className="text-base font-medium text-gray-600 ">
+                    {service.text?.[1]?.content}
+                  </p>
+
+                  <p className="text-base font-medium text-gray-600 ">
+                    {service.text?.[2]?.content}
+                  </p>
+                  <br />
+
                   <Button onClick={() => setShowMembership(true)}>
                     PRO 기능 이용하기
                   </Button>

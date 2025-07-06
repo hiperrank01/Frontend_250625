@@ -38,8 +38,8 @@ export const Main = () => {
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-0">
-      <HeroSection />
       <Tabs value={activeTab} className="w-full">
+        <HeroSection />
         <TabNav />
         <ServiceSection setShowMembership={setShowMembership} />
         <InquirySection

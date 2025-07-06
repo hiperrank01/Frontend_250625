@@ -1,3 +1,4 @@
+import Logo from "@/public/Logo_Main.png";
 export const Footer = () => {
   return (
     <footer className="bg-black text-white py-8 px-6 mt-16">
@@ -5,10 +6,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="bg-white text-black px-3 py-1 rounded font-bold text-xl">
-                9W
-              </div>
-              <span className="text-xl font-bold">나인위닛</span>
+              <img src={Logo.src} alt="나인위닛 로고" />
             </div>
             <p className="text-gray-400">스마트스토어 SEO 최적화 전문 서비스</p>
             <p>서비스 데이터 분석 기반 매출 최적화 전문</p>

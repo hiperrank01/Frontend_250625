@@ -46,8 +46,16 @@ export const services: SERVICE_TYPE = [
     title: "GA 활용 고객 행동 분석",
     icon: <Users className="w-6 h-6" />,
     description: "루커스튜디오 연동 CRM, 코호트, AARRR 퍼널 분석",
-    text: "1. 구글애즈-구글태그매니저-리마케팅-검색어리포트-머신러닝최적화 ",
-    text2: "2.GA4 세팅 및 전환분석-전환 추적-utm 설치-태그 어시스턴트",
+    text: [
+      {
+        content: "1. 구글애즈 ➡️  리마케팅 | 구글 태그매니저 | 검색어 리포트",
+      },
+      { content: "2. GA4 세팅 및 전환분석-전환 추적-utm 설치-태그 어시스턴트" },
+      {
+        content:
+          "3.CRM 마케팅 ➡️ 내부데이터 활용한 코호트, RFM, AARRR 퍼널 분석",
+      },
+    ],
   },
   {
     id: "creative",
