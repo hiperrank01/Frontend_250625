@@ -2,6 +2,7 @@ import UserProfile from "@/components/mypage/user-profile";
 import MypageMenu from "@/components/mypage/mypage-menu";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+
 export default function Mypage() {
   return (
     <>

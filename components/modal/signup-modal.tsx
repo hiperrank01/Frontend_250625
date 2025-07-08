@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,18 +13,61 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { SignUp } from "@/api/auth-api";
 
 interface SignUpModalProps {
   isOpen: boolean;
   onClose: () => void;
   onLoginClick: () => void;
+  verifiedEmail: string; // 인증된 이메일 props 추가
 }
 
 export function SignUpModal({
   isOpen,
   onClose,
   onLoginClick,
+  verifiedEmail, // props 받기
 }: SignUpModalProps) {
+  const [form, setForm] = useState({
+    password: "",
+    confirmPassword: "",
+    nm: "",
+    phn_no: "",
+    rcm_eml: "", // 추천인 이메일은 옵션으로 남겨둡니다.
+    prv_agr_yn: "s",
+    tos_agr_yn: "s",
+    adv_rcv_yn: "s",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: SignUp,
+    onSuccess: () => {
+      alert("회원가입 성공! 로그인 해주세요.");
+      onLoginClick(); // 성공 시 로그인 화면으로
+    },
+    onError: (err: any) => {
+      alert("회원가입 실패: " + err.message);
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (form.password !== form.confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    // 인증된 이메일과 함께 폼 데이터 전송
+    mutate({ ...form, eml_adr: verifiedEmail });
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
@@ -31,62 +75,82 @@ export function SignUpModal({
           <Button
             variant="ghost"
             size="icon"
-            onClick={onLoginClick}
+            onClick={onLoginClick} // 로그인 화면으로 돌아가기
             className="bg-gray-400 hover:bg-[#333]"
           >
             <ArrowLeft className="h-4 w-4 text-white" />
           </Button>
         </div>
         <DialogHeader className="pt-10">
-          <DialogTitle className=" text-center">회원가입</DialogTitle>
-          <DialogDescription className=" text-center">
-            새로운 계정을 생성합니다.
+          <DialogTitle className="text-center">회원가입</DialogTitle>
+          <DialogDescription className="text-center">
+            계정 정보를 입력해주세요. 이메일: {verifiedEmail}
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="id" className="text-right">
-              아이디
-            </Label>
-            <Input
-              id="id"
-              placeholder="아이디를 입력하세요"
-              className="col-span-3"
-            />
+        <form onSubmit={handleSubmit}>
+          <div className="grid gap-4 py-4">
+            {/* 이메일 필드 제거됨 */}
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="password" className="text-right">
+                비밀번호
+              </Label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="비밀번호를 입력하세요"
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="confirm-password" className="text-right">
+                비밀번호 확인
+              </Label>
+              <Input
+                id="confirm-password"
+                name="confirmPassword"
+                type="password"
+                value={form.confirmPassword}
+                onChange={handleChange}
+                placeholder="비밀번호를 다시 입력하세요"
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                이름
+              </Label>
+              <Input
+                id="name"
+                name="nm"
+                value={form.nm}
+                onChange={handleChange}
+                placeholder="이름을 입력하세요"
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="phone" className="text-right">
+                전화번호
+              </Label>
+              <Input
+                id="phone"
+                name="phn_no"
+                value={form.phn_no}
+                onChange={handleChange}
+                placeholder="전화번호를 입력하세요"
+                className="col-span-3"
+              />
+            </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="password" className="text-right">
-              비밀번호
-            </Label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="비밀번호를 입력하세요"
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="confirm-password" className="text-right">
-              비밀번호 확인
-            </Label>
-            <Input
-              id="confirm-password"
-              type="password"
-              placeholder="비밀번호를 다시 입력하세요"
-              className="col-span-3"
-            />
-          </div>
-        </div>
-        <div className="mt-4">
-          <Button variant="outline" className="w-full">
-            Google로 시작하기
-          </Button>
-        </div>
-        <DialogFooter>
-          <Button type="submit" className="w-full">
-            회원가입 완료
-          </Button>
-        </DialogFooter>
+          <DialogFooter>
+            <Button type="submit" className="w-full" disabled={isPending}>
+              회원가입 완료
+            </Button>
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

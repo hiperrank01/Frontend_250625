@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Star, Download } from "lucide-react";
-import { services } from "@/data/service-data";
+import { services } from "@/data/service-data.tsx";
 import {
   Tooltip,
   TooltipTrigger,

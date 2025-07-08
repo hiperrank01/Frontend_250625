@@ -7,7 +7,11 @@ import {
   Users,
   ImageIcon,
 } from "lucide-react";
-import { SERVICE_TYPE } from "@/utils/types/service-data";
+import { SERVICE_TYPE } from "@/types/service-data";
+import Report1 from "@/public/report/report-1.png";
+import Report2 from "@/public/report/report-2.png";
+import Report3 from "@/public/report/report-3.png";
+import Report4 from "@/public/report/report-4.png";
 export const services: SERVICE_TYPE = [
   {
     id: "seo-analysis",
@@ -34,6 +38,7 @@ export const services: SERVICE_TYPE = [
     icon: <BarChart3 className="w-6 h-6" />,
     description:
       "네이버, 구글, 메타, 틱톡, 카카오 등 매체별 광고 효율 비교 분석",
+    text: [],
   },
   // {
   //   id: "auto-bid",

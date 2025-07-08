@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-
+import type { ReactNode } from "react";
 export type TextBlock = {
   content: string;
   className?: string;
@@ -7,7 +7,7 @@ export type TextBlock = {
 export type SERVICE_TYPE = {
   id: string;
   title: string;
-  icon: ReactElement;
+  icon: ReactNode;
   description: string;
   text?: TextBlock[];
 }[];
