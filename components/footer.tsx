@@ -6,7 +6,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <img src={Logo.src} alt="나인위닛 로고" />
+              <img className="w-40" src={Logo.src} alt="나인위닛 로고" />
             </div>
             <p className="text-gray-400">스마트스토어 SEO 최적화 전문 서비스</p>
             <p>서비스 데이터 분석 기반 매출 최적화 전문</p>

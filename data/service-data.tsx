@@ -25,6 +25,13 @@ export const services: SERVICE_TYPE = [
     title: "자사 경쟁사 분석",
     icon: <TrendingUp className="w-6 h-6" />,
     description: "경쟁사 대비 우위 요소 분석 및 상품 개선 방안 도출",
+    text: [
+      {
+        content:
+          "➡️-자사 경쟁사 프로그램 활용한 키워드별 판매량 높은 상품 추적",
+      },
+      { content: "➡️브랜드 스토리, 철학, 인지도, 마케팅 차별화 포인트" },
+    ],
   },
   // {
   //   id: "report-auto",
@@ -38,7 +45,12 @@ export const services: SERVICE_TYPE = [
     icon: <BarChart3 className="w-6 h-6" />,
     description:
       "네이버, 구글, 메타, 틱톡, 카카오 등 매체별 광고 효율 비교 분석",
-    text: [],
+    text: [
+      { content: <img src="/매체별보고서_1.png" /> },
+      { content: <img src="/매체별보고서_2.png" /> },
+      { content: <img src="/매체별보고서_3.png" /> },
+      { content: <img src="/매체별보고서_4.png" /> },
+    ],
   },
   // {
   //   id: "auto-bid",

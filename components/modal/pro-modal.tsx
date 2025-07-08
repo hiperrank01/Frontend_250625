@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 export const ProModal = ({
   showMembership,
   setShowMembership,
@@ -20,8 +21,8 @@ export const ProModal = ({
     { period: "1년", price: 80000, popular: false },
   ];
 
+  const router = useRouter();
   if (!showMembership) return null;
-
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <Card className="w-full max-w-2xl mx-4">
@@ -50,7 +51,14 @@ export const ProModal = ({
                   <p className="text-2xl font-bold mb-4">
                     ₩{plan.price.toLocaleString()}
                   </p>
-                  <Button className="w-full">선택하기</Button>
+                  <Button
+                    onClick={() => {
+                      router.push("pro-upgrade");
+                    }}
+                    className="w-full"
+                  >
+                    선택하기
+                  </Button>
                 </CardContent>
               </Card>
             ))}

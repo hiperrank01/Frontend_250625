@@ -46,7 +46,7 @@ export function EmailVerifyModal({
       alert(err.message || "인증 실패");
     },
   });
-  const handleGoogleSuccess = (response: { credential?: string }) => {
+  const handleGoogleSuccess = () => {
     toast.success("Google 로그인 성공! 백엔드 검증 필요.");
 
     onClose();

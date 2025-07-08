@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Star, Download } from "lucide-react";
-import { services } from "@/data/service-data.tsx";
+import { services } from "@/data/service-data";
 
 interface ServiceSectionProps {
   setShowMembership: (show: boolean) => void;
@@ -86,23 +86,27 @@ export const ServiceSection = ({ setShowMembership }: ServiceSectionProps) => {
                 </div>
               )}
               {service.id !== "seo-analysis" && (
-                <div className="text-center py-12">
-                  <div className="mb-4">{service.icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">
-                    {service.title}
-                  </h3>
+                <div className=" items-start justify-center gap-8 py-1">
+                  <>
+                    <div className="mb-4">{service.icon}</div>
+                    <h3 className="text-lg font-semibold mb-2">
+                      {service.title}
+                    </h3>
+                  </>
                   <p className="text-gray-600 mb-4 ">{service.description}</p>
-                  <p className="text-base font-medium text-gray-600 ">
-                    {service.text?.[0]?.content}
-                  </p>
+                  <div className="flex flex-col items-start justify-center gap-8 py-1">
+                    {service.text
+                      ?.filter((item) => !!item?.content)
+                      .map((item, index) => (
+                        <p
+                          key={index}
+                          className="text-base font-medium text-gray-600"
+                        >
+                          {item.content}
+                        </p>
+                      ))}
+                  </div>
 
-                  <p className="text-base font-medium text-gray-600 ">
-                    {service.text?.[1]?.content}
-                  </p>
-
-                  <p className="text-base font-medium text-gray-600 ">
-                    {service.text?.[2]?.content}
-                  </p>
                   <br />
 
                   <Button onClick={() => setShowMembership(true)}>

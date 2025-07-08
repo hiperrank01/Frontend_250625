@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import type { ReactNode } from "react";
 export type TextBlock = {
-  content: string;
+  content: ReactNode; // ✅ JSX 허용
   className?: string;
 };
 export type SERVICE_TYPE = {
