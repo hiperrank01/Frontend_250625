@@ -13,7 +13,6 @@ export function useLogin(onSuccess?: () => void, onError?: (err: any) => void) {
       localStorage.setItem("accessToken", data.access);
       localStorage.setItem("refreshToken", data.refresh);
 
-      console.log("로그인 API 응답", data);
       setAuth(data.access, data.user.eml_adr, data.user.nm);
 
       toast.success("로그인 성공! 환영합니다");

@@ -57,7 +57,7 @@ export default function HeroSection() {
 
             <div className="group">
               <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
-                "네이버/구글/메타 등 매체별 놓치고 있는 키워드는 없나?"
+                &quot;네이버/구글/메타 등 매체별 놓치고 있는 키워드는 없나?&quot;
               </blockquote>
             </div>
           </div>

@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { GoogleSignInButton } from "@/google/GoogleSignInButton";
+import { decodeGoogleIdToken } from "@/lib/decode-token";
+import { useAuthStore } from "@/store/store";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -40,7 +43,7 @@ export function LoginModal({
     () => {
       onClose();
     },
-    (err: any) => {
+    () => {
       toast.error("로그인 실패: 이메일 또는 비밀번호를 확인해주세요");
     }
   );
@@ -48,6 +51,29 @@ export function LoginModal({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     mutate({ email: form.eml_adr, password: form.password });
+  };
+
+  // Google 로그인 성공 핸들러
+  const handleGoogleSuccess = (response: { credential?: string }) => {
+    toast.success("Google 로그인 성공!");
+    // TODO: 추후 추가 필요
+    // 1. response.credential (ID 토큰)을 백엔드 API로 전송요청필요요
+    // 2. 백엔드에서 이 토큰을 검증, 사용자 인증 및 세션 관리를
+    // 3. 백엔드로부터 받은 응답을 처리하여 로그인 상태를 업데이트.
+    const idToken = response.credential;
+    if (idToken) {
+      const decoded = decodeGoogleIdToken(idToken);
+      if (decoded) {
+        useAuthStore.getState().setAuth("google", decoded.email, decoded.name);
+        onClose();
+      }
+    }
+  };
+
+  // Google 로그인 실패 핸들러
+  const handleGoogleError = (error: Error) => {
+    console.error("Google Sign-In Error:", error);
+    toast.error("Google 로그인 실패: " + (error?.message || "알 수 없는 오류"));
   };
 
   return (
@@ -92,9 +118,17 @@ export function LoginModal({
           </div>
 
           <DialogFooter className="flex-col gap-2 pt-4">
-            <Button variant="outline" className="w-full" type="button">
-              Google 로그인
-            </Button>
+            <GoogleSignInButton
+              clientId="81819910903-50gnefig8q092lfihklimae08cebf2of.apps.googleusercontent.com"
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              buttonText="Google 로그인"
+              theme="outline"
+              size="large"
+              type="standard"
+              shape="rectangular"
+              width="100%"
+            />
             <Button type="submit" className="w-full" disabled={isPending}>
               로그인
             </Button>

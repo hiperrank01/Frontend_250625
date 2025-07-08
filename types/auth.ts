@@ -35,3 +35,15 @@ export interface VerifyRequest {
   eml_adr: string;
   code: string;
 }
+
+export interface GoogleSignInButtonProps {
+  clientId: string;
+  onSuccess: (response: { credential?: string }) => void;
+  onError?: (error: any) => void;
+  buttonText?: string;
+  theme?: "outline" | "filled_blue" | "filled_black";
+  size?: "large" | "medium" | "small";
+  type?: "standard" | "icon";
+  shape?: "rectangular" | "pill" | "circle" | "square";
+  width?: string;
+}

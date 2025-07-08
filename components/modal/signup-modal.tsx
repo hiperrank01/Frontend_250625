@@ -51,7 +51,7 @@ export function SignUpModal({
       alert("회원가입 성공! 로그인 해주세요.");
       onLoginClick(); // 성공 시 로그인 화면으로
     },
-    onError: (err: any) => {
+    onError: (err: Error) => {
       alert("회원가입 실패: " + err.message);
     },
   });
