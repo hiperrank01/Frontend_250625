@@ -6,8 +6,6 @@ export const youtubeCategories: Category[] = [
     videos: [
       { id: "JGT0E8qMHTg", videoName: "bgf로직스" },
       { id: "WSGmFOu7a2w", videoName: "워라벨" },
-      { id: "YOUTUBE_ID_3" },
-      { id: "YOUTUBE_ID_4" },
     ],
   },
   {
@@ -38,11 +36,30 @@ export const youtubeCategories: Category[] = [
     videos: [
       { id: "Ee9dyTW_9fQ", videoName: "닥터차" },
       { id: "pqjgg5E77ik", videoName: "씽긋" },
+      { id: "s9q16bapanM", videoName: "씽긋2" },
+      { id: "Edfumje30kw", videoName: "에누리1" },
+      { id: "qsx1vJhw-cM", videoName: "매일두유1" },
+      { id: "Ffnai_x9vu4", videoName: "매일두유2" },
+      { id: "K6iAGFgjljo", videoName: "네일팝1" },
+      { id: "kFn1o2Ffk_w", videoName: "도매꾹1" },
+      { id: "GkaPS9N1y2U", videoName: "럭키찬게임즈1" },
+      { id: "uZZX_LIcBkA", videoName: "로보로보1" },
+      { id: "scIgGLcnE2c", videoName: "로보로보2" },
+      { id: "14QWpoXa-ho", videoName: "마통1" },
+      { id: "fGwouz--WCE", videoName: "서브카1" },
+      { id: "_JLz6W3v5fA", videoName: "엔씨엠1" },
+      { id: "pzFAWPkR8S4", videoName: "제로식품" },
+      { id: "SMdYJfLM3uI", videoName: "창업박람회1" },
+      { id: "7Sordv80T_c", videoName: "펑키테일즈1" },
+      { id: "d3fxltCM6Mo", videoName: "한국언론제단1" },
     ],
   },
 
   {
     title: "유튜브예능",
-    videos: [{ id: "YOUTUBE_ID_8" }, { id: "YOUTUBE_ID_9" }],
+    videos: [
+      { id: "oL2lMPPKwEM", videoName: "농협은행1" },
+      { id: "pq-jaPjC7XQ", videoName: "농협은행2" },
+    ],
   },
 ];
