@@ -79,5 +79,6 @@ export const services: SERVICE_TYPE = [
     title: "이미지/영상 제작",
     icon: <ImageIcon className="w-6 h-6" />,
     description: "10년 이상 경력 전문가의 디자인 기획 제작 서비스",
+    text: [],
   },
 ];

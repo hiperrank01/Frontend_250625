@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { login } from "@/api/auth-api";
+import { login, googleLogin } from "@/api/auth-api";
 import type { LoginParams } from "@/types/auth";
 import { useAuthStore } from "@/store/store";
 import { toast } from "sonner";
@@ -37,4 +37,14 @@ export function useLogout() {
     resetAuth();
     toast.success("로그아웃 되었습니다");
   };
+}
+export function useGoogleLogin(
+  onSuccess: (data: any) => void,
+  onError?: (error: any) => void
+) {
+  return useMutation({
+    mutationFn: (idToken: string) => googleLogin(idToken),
+    onSuccess,
+    onError,
+  });
 }

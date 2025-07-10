@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Star, Download } from "lucide-react";
 import { services } from "@/data/service-data";
-
+import { Creative } from "./creative-content";
 interface ServiceSectionProps {
   setShowMembership: (show: boolean) => void;
 }
@@ -94,18 +94,21 @@ export const ServiceSection = ({ setShowMembership }: ServiceSectionProps) => {
                     </h3>
                   </>
                   <p className="text-gray-600 mb-4 ">{service.description}</p>
-                  <div className="flex flex-col items-start justify-center gap-8 py-1">
-                    {service.text
-                      ?.filter((item) => !!item?.content)
-                      .map((item, index) => (
-                        <p
-                          key={index}
-                          className="text-base font-medium text-gray-600"
-                        >
-                          {item.content}
-                        </p>
-                      ))}
-                  </div>
+                  {service.id !== "seo-analysis" && (
+                    <div className="flex flex-col items-center justify-center gap-8 py-1">
+                      {service.text
+                        ?.filter((item) => !!item?.content) // content가 존재하는 것만 필터
+                        .map((item, index) => (
+                          <p
+                            key={index}
+                            className="text-base font-medium text-gray-600"
+                          >
+                            {item.content}
+                          </p>
+                        ))}
+                    </div>
+                  )}
+                  {service.id === "creative" && <Creative />}
 
                   <br />
 

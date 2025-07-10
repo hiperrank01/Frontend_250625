@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useLogin } from "@/hooks/login/use-auth";
+import { useGoogleLogin, useLogin } from "@/hooks/login/use-auth";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,8 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GoogleSignInButton } from "@/google/GoogleSignInButton";
-import { decodeGoogleIdToken } from "@/lib/decode-token";
 import { useAuthStore } from "@/store/store";
+import { LoadingSpinner } from "../ui/LoadingSpinner";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -39,7 +39,7 @@ export function LoginModal({
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const { mutate, isPending } = useLogin(
+  const { mutate: login, isPending: isLoginPending } = useLogin(
     () => {
       onClose();
     },
@@ -48,37 +48,57 @@ export function LoginModal({
     }
   );
 
+  const { mutate: loginWithGoogle, isPending: isGoogleLoginPending } =
+    useGoogleLogin(
+      (data) => {
+        localStorage.setItem("accessToken", data.access);
+        localStorage.setItem("refreshToken", data.refresh);
+        useAuthStore
+          .getState()
+          .setAuth(data.access, data.user.eml_adr, data.user.nm);
+        toast.success("Google 계정으로 로그인되었습니다!");
+        onClose();
+      },
+      (err) => {
+        toast.error(err.message || "구글 로그인에 실패했습니다.");
+      }
+    );
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    mutate({ email: form.eml_adr, password: form.password });
+    login({ email: form.eml_adr, password: form.password });
   };
 
-  // Google 로그인 성공 핸들러
   const handleGoogleSuccess = (response: { credential?: string }) => {
-    toast.success("Google 로그인 성공!");
-    // TODO: 추후 추가 필요
-    // 1. response.credential (ID 토큰)을 백엔드 API로 전송요청필요요
-    // 2. 백엔드에서 이 토큰을 검증, 사용자 인증 및 세션 관리를
-    // 3. 백엔드로부터 받은 응답을 처리하여 로그인 상태를 업데이트.
-    const idToken = response.credential;
-    if (idToken) {
-      const decoded = decodeGoogleIdToken(idToken);
-      if (decoded) {
-        useAuthStore.getState().setAuth("google", decoded.email, decoded.name);
-        onClose();
-      }
+    if (response.credential) {
+      loginWithGoogle(response.credential);
+    } else {
+      toast.error("Google ID 토큰을 가져오지 못했습니다.");
     }
   };
 
-  // Google 로그인 실패 핸들러
-  const handleGoogleError = (error: Error) => {
-    console.error("Google Sign-In Error:", error);
-    toast.error("Google 로그인 실패: " + (error?.message || "알 수 없는 오류"));
+  const handleGoogleError = () => {
+    toast.error("Google 로그인 중 오류가 발생했습니다.");
   };
+
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+
+  if (!clientId) {
+    console.error("Google Client ID가 설정되지 않았습니다.");
+
+    return null;
+  }
+
+  const isPending = isLoginPending || isGoogleLoginPending;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
+        {isPending && (
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
+            <LoadingSpinner />
+          </div>
+        )}
         <DialogHeader>
           <DialogTitle>로그인</DialogTitle>
           <DialogDescription>
@@ -118,21 +138,28 @@ export function LoginModal({
           </div>
 
           <DialogFooter className="flex-col gap-2 pt-4">
-            <GoogleSignInButton
-              clientId="81819910903-50gnefig8q092lfihklimae08cebf2of.apps.googleusercontent.com"
-              onSuccess={handleGoogleSuccess}
-              onError={handleGoogleError}
-              buttonText="Google 로그인"
-              theme="outline"
-              size="large"
-              type="standard"
-              shape="rectangular"
-              width="100%"
-            />
+            <div className={isPending ? "pointer-events-none opacity-50" : ""}>
+              <GoogleSignInButton
+                clientId={clientId}
+                onSuccess={handleGoogleSuccess}
+                onError={handleGoogleError}
+                buttonText="Google 로그인"
+                theme="outline"
+                size="large"
+                type="standard"
+                shape="rectangular"
+                width="100%"
+              />
+            </div>
             <Button type="submit" className="w-full" disabled={isPending}>
               로그인
             </Button>
-            <Button type="button" variant="secondary" onClick={onSignUpClick}>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={onSignUpClick}
+              disabled={isPending}
+            >
               회원가입
             </Button>
           </DialogFooter>

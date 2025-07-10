@@ -1,8 +1,7 @@
-
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 interface GoogleAuthResponse {
-  credential?: string; // ID Token
+  credential?: string;
   select_by?: string;
 }
 
@@ -17,10 +16,19 @@ declare global {
     google: {
       accounts: {
         id: {
-          initialize: (options: { client_id: string; callback: (response: GoogleAuthResponse) => void; }) => void;
+          initialize: (options: {
+            client_id: string;
+            callback: (response: GoogleAuthResponse) => void;
+          }) => void;
           renderButton: (
             parentElement: HTMLElement,
-            options: { theme: string; size: string; text: string; shape?: string; width?: string; }
+            options: {
+              theme: string;
+              size: string;
+              text: string;
+              shape?: string;
+              width?: string;
+            }
           ) => void;
           prompt: () => void;
         };
@@ -29,30 +37,33 @@ declare global {
   }
 }
 
-export const useGoogleAuth = ({ clientId, onSuccess, onError }: GoogleAuthOptions) => {
+export const useGoogleAuth = ({
+  clientId,
+  onSuccess,
+  onError,
+}: GoogleAuthOptions) => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
-    const scriptId = 'google-identity-script';
+    const scriptId = "google-identity-script";
     if (document.getElementById(scriptId)) {
       setScriptLoaded(true);
       return;
     }
 
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.id = scriptId;
-    script.src = 'https://accounts.google.com/gsi/client';
+    script.src = "https://accounts.google.com/gsi/client";
     script.async = true;
     script.defer = true;
     script.onload = () => setScriptLoaded(true);
     script.onerror = (e) => {
-      console.error('Failed to load Google Identity Services script', e);
+      console.error("Failed to load Google Identity Services script", e);
       if (onError) onError(e);
     };
     document.head.appendChild(script);
 
     return () => {
-      // Clean up script if component unmounts
       if (document.getElementById(scriptId)) {
         document.head.removeChild(script);
       }
@@ -67,13 +78,19 @@ export const useGoogleAuth = ({ clientId, onSuccess, onError }: GoogleAuthOption
           if (response.credential) {
             onSuccess(response);
           } else {
-            console.error('Google authentication failed: No credential received', response);
-            if (onError) onError(new Error('Google authentication failed: No credential received'));
+            console.error(
+              "Google authentication failed: No credential received",
+              response
+            );
+            if (onError)
+              onError(
+                new Error(
+                  "Google authentication failed: No credential received"
+                )
+              );
           }
         },
       });
-      // Optional: You can call prompt() here for One Tap sign-in
-      // window.google.accounts.id.prompt();
     }
   }, [scriptLoaded, clientId, onSuccess, onError]);
 

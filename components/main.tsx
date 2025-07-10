@@ -11,30 +11,6 @@ export const Main = () => {
   const [showMembership, setShowMembership] = useState(false);
   const searchParams = useSearchParams();
   const activeTab = searchParams.get("tab") || "seo-analysis";
-  const [formData, setFormData] = useState({
-    company: "",
-    name: "",
-    phone: "",
-    email: "",
-    inquiry: "",
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // 구글 시트 연동 로직 (실제 구현 시 Google Apps Script 사용)
-    console.log("Form submitted:", formData);
-    alert("문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.");
-    setFormData({ company: "", name: "", phone: "", email: "", inquiry: "" });
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-0">
@@ -42,11 +18,7 @@ export const Main = () => {
         <HeroSection />
         <TabNav />
         <ServiceSection setShowMembership={setShowMembership} />
-        <InquirySection
-          formData={formData}
-          handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit}
-        />
+        <InquirySection />
       </Tabs>
       <ProModal
         showMembership={showMembership}
