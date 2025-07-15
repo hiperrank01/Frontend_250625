@@ -9,6 +9,7 @@ export const API_PATHS = {
   VERIFY_CODE: `${API_BASE_URL}/verify-code/`,
   SIGNUP: `${API_BASE_URL}/signup/`,
   GOOGLE_LOGIN: `${API_BASE_URL}/google/verify/`,
+  NAVER_LOGIN: `${API_BASE_URL}/naver/verify/`,
 };
 
 export async function login({ email, password }: LoginParams) {
@@ -94,6 +95,27 @@ export async function googleLogin(idToken: string) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id_token: idToken }),
+  });
+
+  if (!res.ok) {
+    let errorData;
+    try {
+      errorData = await res.json();
+    } catch (e) {
+      // JSON 파싱 실패 시
+      throw new Error(`서버 에러: ${res.status} - ${res.statusText}`);
+    }
+    throw new Error(errorData.message || "구글 로그인에 실패했습니다.");
+  }
+
+  return res.json();
+}
+
+export async function naverLogin(code: string, state: string) {
+  const res = await fetch(API_PATHS.NAVER_LOGIN, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ code, state }),
   });
 
   if (!res.ok) {

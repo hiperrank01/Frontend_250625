@@ -11,11 +11,11 @@
   - recatch-nextjs-dev-proxy: Development Proxy Server
   - recatch-embed-analyzer: Embed Analysis Tool
 - **아키텍처**: Domain Driven Design (DDD) - presentation 레거시 분리 작업 진행중
-- **언어**: TypeScript (strict mode 사용)
-- **스타일링**: styled-components + Ant Design (성능 이슈로 변경 고려중)
+- **언어**: TypeScript
+- **스타일링**: tailwindcss 
 - **상태 관리**:
   - 서버: React Query (TanStack Query)
-  - 클라이언트: Context + useState (현재), Zustand (전환 계획중)
+  - 클라이언트: Context + useState (현재), Zustand (사용중)
 - **테스팅**:
   - 단위 테스트: Vitest
   - E2E 테스트: Playwright (별도 앱)

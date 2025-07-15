@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { GoogleSignInButton } from "@/google/GoogleSignInButton";
+import { GoogleSignInButton } from "@/oauth-login/GoogleSignInButton";
+import NaverSignInButton from "@/oauth-login/NaverSignInButton";
 import { useAuthStore } from "@/store/store";
 import { LoadingSpinner } from "../ui/LoadingSpinner";
 
@@ -150,6 +151,9 @@ export function LoginModal({
                 shape="rectangular"
                 width="100%"
               />
+            </div>
+            <div className={isPending ? "pointer-events-none opacity-50" : ""}>
+              <NaverSignInButton />
             </div>
             <Button type="submit" className="w-full" disabled={isPending}>
               로그인

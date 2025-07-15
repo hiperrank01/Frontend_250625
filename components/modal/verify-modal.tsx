@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft } from "lucide-react";
 import { useRequestCode, useVerifyCode } from "@/hooks/sign-up/use-verify";
 import { SignUpProps } from "@/types/sign-up";
-import { GoogleSignInButton } from "@/google/GoogleSignInButton";
+import { GoogleSignInButton } from "@/oauth-login/GoogleSignInButton";
 import { toast } from "sonner";
 import { useGoogleLogin } from "@/hooks/login/use-auth"; // Added
 import { useAuthStore } from "@/store/store"; // Added
