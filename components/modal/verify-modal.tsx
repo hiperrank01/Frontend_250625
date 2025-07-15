@@ -16,6 +16,7 @@ import { ArrowLeft } from "lucide-react";
 import { useRequestCode, useVerifyCode } from "@/hooks/sign-up/use-verify";
 import { SignUpProps } from "@/types/sign-up";
 import { GoogleSignInButton } from "@/oauth-login/GoogleSignInButton";
+import NaverSignInButton from "@/oauth-login/NaverSignInButton";
 import { toast } from "sonner";
 import { useGoogleLogin } from "@/hooks/login/use-auth"; // Added
 import { useAuthStore } from "@/store/store"; // Added
@@ -147,6 +148,7 @@ export function EmailVerifyModal({
               shape="rectangular"
               width="100%"
             />
+            <NaverSignInButton />
           </div>
         ) : (
           <div className="grid gap-4 py-4">

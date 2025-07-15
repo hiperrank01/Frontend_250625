@@ -138,34 +138,44 @@ export function LoginModal({
             />
           </div>
 
-          <DialogFooter className="flex-col gap-2 pt-4">
-            <div className={isPending ? "pointer-events-none opacity-50" : ""}>
-              <GoogleSignInButton
-                clientId={clientId}
-                onSuccess={handleGoogleSuccess}
-                onError={handleGoogleError}
-                buttonText="Google 로그인"
-                theme="outline"
-                size="large"
-                type="standard"
-                shape="rectangular"
-                width="100%"
-              />
+          <DialogFooter className="flex flex-col gap-2 pt-4">
+            <div className="flex flex-col gap-2 w-full">
+              <div
+                className={isPending ? "pointer-events-none opacity-50" : ""}
+              >
+                <GoogleSignInButton
+                  clientId={clientId}
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleError}
+                  buttonText="Google 로그인"
+                  theme="outline"
+                  size="large"
+                  type="standard"
+                  shape="rectangular"
+                  width="100%"
+                />
+              </div>
+              <div
+                className={isPending ? "pointer-events-none opacity-50" : ""}
+              >
+                <NaverSignInButton />
+              </div>
+
+              <div className="flex flex-row">
+                <Button type="submit" className="w-1/2" disabled={isPending}>
+                  로그인
+                </Button>
+                <Button
+                  type="button"
+                  className="w-1/2"
+                  variant="secondary"
+                  onClick={onSignUpClick}
+                  disabled={isPending}
+                >
+                  회원가입
+                </Button>
+              </div>
             </div>
-            <div className={isPending ? "pointer-events-none opacity-50" : ""}>
-              <NaverSignInButton />
-            </div>
-            <Button type="submit" className="w-full" disabled={isPending}>
-              로그인
-            </Button>
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={onSignUpClick}
-              disabled={isPending}
-            >
-              회원가입
-            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

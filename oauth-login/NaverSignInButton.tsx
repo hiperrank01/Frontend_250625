@@ -12,12 +12,9 @@ const NaverSignInButton = () => {
   return (
     <button
       onClick={handleLogin}
-      className="w-full h-12 flex items-center justify-center rounded-md"
-      style={{ backgroundColor: "#03C75A" }}
+      className="w-full h-10 flex bg-[#03C75A] items-center justify-center rounded-md  hover:bg-green-700 text-white font-bold"
     >
-      <a target="_blank">
-        <span className="text-white font-bold">네이버 로그인</span>
-      </a>
+      네이버 로그인
     </button>
   );
 };

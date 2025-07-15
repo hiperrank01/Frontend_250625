@@ -87,9 +87,9 @@ export function SignUpModal({
             계정 정보를 입력해주세요. 이메일: {verifiedEmail}
           </DialogDescription>
         </DialogHeader>
+        <div className="grid gap-2 py-4"></div>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
-            {/* 이메일 필드 제거됨 */}
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="password" className="text-right">
                 비밀번호
