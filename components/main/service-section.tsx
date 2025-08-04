@@ -97,7 +97,7 @@ export const ServiceSection = ({ setShowMembership }: ServiceSectionProps) => {
                   {service.id !== "seo-analysis" && (
                     <div className="flex flex-col items-center justify-center gap-8 py-1">
                       {service.text
-                        ?.filter((item) => !!item?.content) // content가 존재하는 것만 필터
+                        ?.filter((item) => !!item?.content)
                         .map((item, index) => (
                           <p
                             key={index}

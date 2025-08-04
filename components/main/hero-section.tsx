@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import mainLogo from "@/public/Logo_Main.png";
+import Image from "next/image";
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -32,7 +33,7 @@ export default function HeroSection() {
           }`}
         >
           <p className="text-xl md:text-xl text-gray-600 mb-2 font-light">
-            최적화 솔루션이터 기반 분석으로 매출 성장을 이끌어내는 전문 서비스
+            &quot;온라인셀러와 마케터분들 자동화 보고서 필요하신가요?&quot;
           </p>
         </div>
 
@@ -44,20 +45,21 @@ export default function HeroSection() {
           <div className="space-y-3 mb-10">
             <div className="group">
               <blockquote className=" hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-2 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
-                "광고 매출/효율 Maximum으로 올리는 방법은?"
+                &quot;광고 매출/효율 Maximum으로 올리는 방법은?&quot;
               </blockquote>
             </div>
 
             <div className="group">
               <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
-                &quot;상품 5개만 넘어가도 무엇을 어떻게 집중해야할지 모르는 대행사들,
-                어떻게 관리해야할까?&quot;
+                &quot;상품 5개만 넘어가도 무엇을 어떻게 집중해야할지 모르는
+                대행사들, 어떻게 관리해야할까?&quot;
               </blockquote>
             </div>
 
             <div className="group">
               <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
-                &quot;네이버/구글/메타 등 매체별 놓치고 있는 키워드는 없나?&quot;
+                &quot;네이버/구글/메타 등 매체별 놓치고 있는 키워드는
+                없나?&quot;
               </blockquote>
             </div>
           </div>
@@ -76,9 +78,11 @@ export default function HeroSection() {
             <p className="text-lg md:text-xl text-black mb-2">
               상품별/키워드별 자동화로 매출을 극대화해드립니다.
             </p>
-            <img
+            <Image
               className="text-center block mx-auto"
               src={mainLogo.src}
+              width={200}
+              height={60}
               alt="나인위닛 로고"
             />
           </div>

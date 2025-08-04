@@ -3,13 +3,12 @@ export interface LoginParams {
   password: string;
 }
 
-export interface LoginResponse {
-  acess: string;
+export interface AuthResponse {
+  access: string;
   refresh: string;
   user: {
-    id: string;
-    name: string;
-    email: string;
+    eml_adr: string;
+    nm: string;
   };
 }
 

@@ -11,22 +11,38 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageSquare, Play } from "lucide-react";
-
+import { useGoogleSheet } from "@/hooks/google-sheet/use-google-sheet";
+import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
+import { toast } from "sonner";
 export const InquirySection = () => {
   const [formData, setFormData] = useState({
-    company: "",
-    name: "",
+    companyName: "",
+    contactName: "",
+    inquiryContent: "",
     phone: "",
     email: "",
-    inquiry: "",
+  });
+  const { mutate, isPending } = useGoogleSheet({
+    onSuccess: () => {
+      toast.success("문의가 접수되었습니다.");
+
+      setFormData({
+        companyName: "",
+        contactName: "",
+        inquiryContent: "",
+        phone: "",
+        email: "",
+      });
+    },
+    onError: (err: any) => {
+      toast.error(err.message || "문의가 접수에 실패하였습니다");
+    },
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 구글 시트 연동 로직 (실제 구현 시 Google Apps Script 사용)
+    mutate(formData);
     console.log("Form submitted:", formData);
-    alert("문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.");
-    setFormData({ company: "", name: "", phone: "", email: "", inquiry: "" });
   };
 
   const handleInputChange = (
@@ -54,12 +70,10 @@ export const InquirySection = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2">
-                  업체명
-                </label>
+                <label className="block text-sm font-medium mb-2">업체명</label>
                 <Input
-                  name="company"
-                  value={formData.company}
+                  name="companyName"
+                  value={formData.companyName}
                   onChange={handleInputChange}
                   placeholder="업체명을 입력하세요"
                   required
@@ -70,8 +84,8 @@ export const InquirySection = () => {
                   담당자명
                 </label>
                 <Input
-                  name="name"
-                  value={formData.name}
+                  name="contactName"
+                  value={formData.contactName}
                   onChange={handleInputChange}
                   placeholder="담당자명을 입력하세요"
                   required
@@ -92,9 +106,7 @@ export const InquirySection = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">
-                  이메일
-                </label>
+                <label className="block text-sm font-medium mb-2">이메일</label>
                 <Input
                   name="email"
                   type="email"
@@ -106,21 +118,28 @@ export const InquirySection = () => {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">
-                문의내용
-              </label>
+              <label className="block text-sm font-medium mb-2">문의내용</label>
               <Textarea
-                name="inquiry"
-                value={formData.inquiry}
+                name="inquiryContent"
+                value={formData.inquiryContent}
                 onChange={handleInputChange}
                 placeholder="문의하실 내용을 자세히 입력해주세요"
                 rows={5}
                 required
               />
             </div>
-            <Button type="submit" className="w-full">
-              <Play className="w-4 h-4 mr-2" />
-              문의하기
+            <Button type="submit" className="w-full" disabled={isPending}>
+              {isPending ? (
+                <>
+                  <LoadingSpinner className="mr-2 h-4 w-4 animate-spin" />
+                  전송 중...
+                </>
+              ) : (
+                <>
+                  <Play className="w-4 h-4 mr-2" />
+                  문의하기
+                </>
+              )}
             </Button>
           </form>
         </CardContent>

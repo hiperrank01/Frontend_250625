@@ -3,7 +3,7 @@ export interface AuthState {
   email: string;
   nm: string;
   isHydrated: boolean;
-  setAuth: (accessToken: string, email: string, nm: string) => void;
+  setAuth: (authData: { accessToken: string; email: string; nm: string }) => void;
   clearAuth: () => void;
   setHydrated: (hydrated: boolean) => void;
 }

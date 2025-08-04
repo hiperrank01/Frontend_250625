@@ -54,9 +54,11 @@ export function LoginModal({
       (data) => {
         localStorage.setItem("accessToken", data.access);
         localStorage.setItem("refreshToken", data.refresh);
-        useAuthStore
-          .getState()
-          .setAuth(data.access, data.user.eml_adr, data.user.nm);
+        useAuthStore.getState().setAuth({
+          accessToken: data.access,
+          email: data.user.eml_adr,
+          nm: data.user.nm,
+        });
         toast.success("Google 계정으로 로그인되었습니다!");
         onClose();
       },

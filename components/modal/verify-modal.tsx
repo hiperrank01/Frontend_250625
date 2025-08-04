@@ -52,15 +52,16 @@ export function EmailVerifyModal({
     },
   });
 
-  // Added useGoogleLogin hook
   const { mutate: loginWithGoogle, isPending: isGoogleLoginPending } =
     useGoogleLogin(
       (data) => {
         localStorage.setItem("accessToken", data.access);
         localStorage.setItem("refreshToken", data.refresh);
-        useAuthStore
-          .getState()
-          .setAuth(data.access, data.user.eml_adr, data.user.nm);
+        useAuthStore.getState().setAuth({
+          accessToken: data.access,
+          email: data.user.eml_adr,
+          nm: data.user.nm,
+        });
         toast.success("Google 계정으로 로그인되었습니다!");
         onClose();
       },
@@ -70,21 +71,21 @@ export function EmailVerifyModal({
     );
 
   const handleGoogleSuccess = (response: { credential?: string }) => {
-    // Updated
     if (response.credential) {
       loginWithGoogle(response.credential);
     } else {
       toast.error("Google ID 토큰을 가져오지 못했습니다.");
     }
   };
-
-  const handleGoogleError = (error: any) => {
-    // Updated
+  interface GoogleErrorType {
+    message: string;
+  }
+  const handleGoogleError = (error: GoogleErrorType) => {
     console.error("Google Sign-In Error:", error);
     toast.error(error?.message || "Google 로그인 중 오류가 발생했습니다.");
   };
 
-  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID; // Use env variable
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
   if (!clientId) {
     console.error("Google Client ID가 설정되지 않았습니다.");

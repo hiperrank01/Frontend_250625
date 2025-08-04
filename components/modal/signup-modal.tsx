@@ -13,8 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
-import { SignUp } from "@/api/auth-api";
+import { useSignUpMutation } from "@/hooks/sign-up/use-sign-up-mutation";
 
 interface SignUpModalProps {
   isOpen: boolean;
@@ -38,6 +37,7 @@ export function SignUpModal({
     prv_agr_yn: "s",
     tos_agr_yn: "s",
     adv_rcv_yn: "s",
+    user_type: "1",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,11 +45,10 @@ export function SignUpModal({
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: SignUp,
+  const { mutate, isPending } = useSignUpMutation({
     onSuccess: () => {
       alert("회원가입 성공! 로그인 해주세요.");
-      onLoginClick(); // 성공 시 로그인 화면으로
+      onLoginClick();
     },
     onError: (err: Error) => {
       alert("회원가입 실패: " + err.message);
@@ -63,8 +62,6 @@ export function SignUpModal({
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }
-
-    // 인증된 이메일과 함께 폼 데이터 전송
     mutate({ ...form, eml_adr: verifiedEmail });
   };
 
@@ -75,7 +72,7 @@ export function SignUpModal({
           <Button
             variant="ghost"
             size="icon"
-            onClick={onLoginClick} // 로그인 화면으로 돌아가기
+            onClick={onLoginClick}
             className="bg-gray-400 hover:bg-[#333]"
           >
             <ArrowLeft className="h-4 w-4 text-white" />

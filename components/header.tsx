@@ -9,6 +9,7 @@ import mainLogo from "@/public/Logo_Main.png";
 import { useAuthStore } from "@/store/store";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { MenuIcon } from "lucide-react";
+import Image from "next/image";
 import {
   Sheet,
   SheetContent,
@@ -194,7 +195,13 @@ export const Header = () => {
               router.push("/");
             }}
           >
-            <img className="w-40" src={mainLogo.src} alt="나인위닛 로고" />
+            <Image
+              width={40}
+              height={40}
+              className="w-40"
+              src={mainLogo.src}
+              alt="나인위닛 로고"
+            />
           </button>
         </div>
 
@@ -205,7 +212,10 @@ export const Header = () => {
                 <MenuIcon className="h-6 w-6" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[250px] sm:w-[300px] bg-black text-white">
+            <SheetContent
+              side="right"
+              className="w-[250px] sm:w-[300px] bg-black text-white"
+            >
               <div className="flex flex-col items-start space-y-4 pt-8">
                 <NavButtons isMobileView={true} />
               </div>

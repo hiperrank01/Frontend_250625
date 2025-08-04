@@ -4,6 +4,8 @@ import intro1 from "@/public/info1.png";
 import intro2 from "@/public/info2.png";
 import intro3 from "@/public/info3.png";
 import intro4 from "@/public/info4.png";
+import Image from "next/image";
+
 export default function intro() {
   const introImages = [intro1, intro2, intro3, intro4];
   return (
@@ -11,9 +13,11 @@ export default function intro() {
       <Header />
       <div className="min-h-screen w-full mt-8">
         {introImages.map((img, idx) => (
-          <img
+          <Image
             key={idx}
             src={img.src}
+            width={60}
+            height={60}
             alt={`intro-${idx + 1}`}
             className="w-3/4 mb-2 object-contain block mx-auto"
           />

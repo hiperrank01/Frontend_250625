@@ -1,7 +1,6 @@
-import { ReactElement } from "react";
 import type { ReactNode } from "react";
 export type TextBlock = {
-  content: ReactNode; // ✅ JSX 허용
+  content: ReactNode;
   className?: string;
 };
 export type SERVICE_TYPE = {
