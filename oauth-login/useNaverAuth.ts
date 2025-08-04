@@ -1,4 +1,4 @@
-import { naverLogin } from "@/api/auth-api";
+import { naverLogin } from "@/fetch/auth-api";
 import { useMutation } from "@tanstack/react-query";
 import { useAuthStore } from "@/store/store";
 import { toast } from "sonner";
