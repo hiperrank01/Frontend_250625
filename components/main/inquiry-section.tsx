@@ -11,9 +11,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageSquare, Play } from "lucide-react";
-import { useGoogleSheet } from "@/hooks/google-sheet/use-google-sheet";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { toast } from "sonner";
+
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfOp_wsPhMQzhRKI78n4Cgv8qWLFWGif5GFi2_T1Ee-1D0TiQ/formResponse";
+
+const ENTRY_IDS = {
+  companyName: "entry.598802616",
+  contactName: "entry.1818155700",
+  phone: "entry.22081931",
+  email: "entry.1045165788",
+  inquiryContent: "entry.1395533608",
+};
+
 export const InquirySection = () => {
   const [formData, setFormData] = useState({
     companyName: "",
@@ -22,27 +33,76 @@ export const InquirySection = () => {
     phone: "",
     email: "",
   });
-  const { mutate, isPending } = useGoogleSheet({
-    onSuccess: () => {
-      toast.success("문의가 접수되었습니다.");
+  const [isPending, setIsPending] = useState(false);
 
-      setFormData({
-        companyName: "",
-        contactName: "",
-        inquiryContent: "",
-        phone: "",
-        email: "",
-      });
-    },
-    onError: (err: any) => {
-      toast.error(err.message || "문의가 접수에 실패하였습니다");
-    },
-  });
+  const validateForm = () => {
+    if (
+      !formData.companyName ||
+      !formData.contactName ||
+      !formData.phone ||
+      !formData.email ||
+      !formData.inquiryContent
+    ) {
+      toast.error("모든 필수 항목을 입력해주세요.");
+      return false;
+    }
+
+    const phoneRegex = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+    if (!phoneRegex.test(formData.phone)) {
+      toast.error("유효한 전화번호 형식을 입력해주세요. (예: 010-1234-5678)");
+      return false;
+    }
+
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("유효한 이메일 형식을 입력해주세요. (예: example@email.com)");
+      return false;
+    }
+
+    return true;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    mutate(formData);
-    console.log("Form submitted:", formData);
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsPending(true);
+
+    const formPayload = new FormData();
+    formPayload.append(ENTRY_IDS.companyName, formData.companyName);
+    formPayload.append(ENTRY_IDS.contactName, formData.contactName);
+    formPayload.append(ENTRY_IDS.phone, formData.phone);
+    formPayload.append(ENTRY_IDS.email, formData.email);
+    formPayload.append(ENTRY_IDS.inquiryContent, formData.inquiryContent);
+
+    try {
+      const response = await fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        body: formPayload,
+        mode: "no-cors",
+      });
+
+      if (response.ok || response.type === "opaque") {
+        toast.success("문의가 성공적으로 접수되었습니다.");
+        setFormData({
+          companyName: "",
+          contactName: "",
+          inquiryContent: "",
+          phone: "",
+          email: "",
+        });
+      } else {
+        toast.error("문의 접수에 실패하였습니다. 다시 시도해주세요.");
+      }
+    } catch (error: any) {
+      console.error("Error submitting form:", error);
+      toast.error("문의 접수 중 오류가 발생했습니다: " + error.message);
+    } finally {
+      setIsPending(false);
+    }
   };
 
   const handleInputChange = (

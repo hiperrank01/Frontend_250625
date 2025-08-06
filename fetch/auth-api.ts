@@ -7,7 +7,6 @@ import type {
 } from "@/types/auth";
 import { handleApiResponse } from "@/lib/api-utils";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export const API_PATHS = {
   LOGIN: `${API_BASE_URL}/login/`,
   SEND_CODE: `${API_BASE_URL}/send-code/`,

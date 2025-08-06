@@ -59,7 +59,7 @@ export function LoginModal({
           email: data.user.eml_adr,
           nm: data.user.nm,
         });
-        toast.success("Google 계정으로 로그인되었습니다!");
+
         onClose();
       },
       (err) => {
@@ -109,7 +109,15 @@ export function LoginModal({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
+        <form
+          onSubmit={handleSubmit}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit(e);
+            }
+          }}
+          className="grid gap-4 py-4"
+        >
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="id" className="text-right">
               아이디
@@ -160,7 +168,7 @@ export function LoginModal({
               <div
                 className={isPending ? "pointer-events-none opacity-50" : ""}
               >
-                <NaverSignInButton />
+                <NaverSignInButton type="button" />
               </div>
 
               <div className="flex flex-row">
