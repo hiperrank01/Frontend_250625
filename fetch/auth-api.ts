@@ -8,12 +8,12 @@ import type {
 import { handleApiResponse } from "@/lib/api-utils";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 export const API_PATHS = {
-  LOGIN: `${API_BASE_URL}/login/`,
-  SEND_CODE: `${API_BASE_URL}/send-code/`,
-  VERIFY_CODE: `${API_BASE_URL}/verify-code/`,
-  SIGNUP: `${API_BASE_URL}/signup/`,
-  GOOGLE_LOGIN: `${API_BASE_URL}/google/verify/`,
-  NAVER_LOGIN: `${API_BASE_URL}/naver/verify/`,
+  LOGIN: `${API_BASE_URL}/user/auth/login/`,
+  SEND_CODE: `${API_BASE_URL}/user/auth/send-code/`,
+  VERIFY_CODE: `${API_BASE_URL}/user/auth/verify-code/`,
+  SIGNUP: `${API_BASE_URL}/user/auth/signup/`,
+  GOOGLE_LOGIN: `${API_BASE_URL}/user/auth/google/verify/`,
+  NAVER_LOGIN: `${API_BASE_URL}/user/auth/naver/verify/`,
 };
 
 export async function login({

@@ -26,7 +26,6 @@ export const useRequestCode = (options?: {
   });
 };
 
-// 인증코드 검증을 위한 커스텀 훅
 export const useVerifyCode = (options?: {
   onSuccess?: () => void;
   onError?: (error: Error) => void;

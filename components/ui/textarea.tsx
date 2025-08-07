@@ -1,22 +1,48 @@
-import * as React from "react"
+// components/ui/textarea.tsx
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
+type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-const Textarea = React.forwardRef<
-  HTMLTextAreaElement,
-  React.ComponentProps<"textarea">
->(({ className, ...props }, ref) => {
-  return (
-    <textarea
-      className={cn(
-        "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        className
-      )}
-      ref={ref}
-      {...props}
-    />
-  )
-})
-Textarea.displayName = "Textarea"
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, ...props }, ref) => {
+    const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
 
-export { Textarea }
+    const handleResize = () => {
+      const el = textareaRef.current;
+      if (el) {
+        el.style.height = "auto";
+        el.style.height = el.scrollHeight + "px";
+      }
+    };
+
+    React.useEffect(() => {
+      handleResize();
+    }, [props.value]);
+
+    return (
+      <textarea
+        ref={(node) => {
+          textareaRef.current = node;
+          if (typeof ref === "function") {
+            ref(node);
+          } else if (ref) {
+            (
+              ref as React.MutableRefObject<HTMLTextAreaElement | null>
+            ).current = node;
+          }
+        }}
+        onInput={handleResize}
+        className={cn(
+          "w-full resize-none overflow-hidden border rounded-md h-10 px-3 py-[0.625rem] text-sm leading-[1.25rem] resize-none text-sm focus:ring-blue-300",
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
+
+Textarea.displayName = "Textarea";
+
+export { Textarea };

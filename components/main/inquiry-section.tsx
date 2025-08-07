@@ -97,9 +97,14 @@ export const InquirySection = () => {
       } else {
         toast.error("문의 접수에 실패하였습니다. 다시 시도해주세요.");
       }
-    } catch (error: any) {
-      console.error("Error submitting form:", error);
-      toast.error("문의 접수 중 오류가 발생했습니다: " + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error submitting form:", error);
+        toast.error("문의 접수 중 오류가 발생했습니다: " + error.message);
+      } else {
+        console.error("Unknown error:", error);
+        toast.error("알 수 없는 오류가 발생했습니다.");
+      }
     } finally {
       setIsPending(false);
     }

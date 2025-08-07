@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSharedDragToScroll } from "@/hooks/use-shared-drag-to-scroll";
-
+import Image from "next/image";
 import { youtubeCategories } from "@/data/youtube-data";
 import { Video, Category } from "@/types/youtube";
 
@@ -77,7 +77,7 @@ export const Creative = () => {
         <ScrollableRow key={index} category={category} />
       ))}
       <div className="flex flex-col items-center justify-center mt-8">
-        <img src="/단가표.png" alt="단가표" className="max-w-full h-auto" />
+        <Image src="/단가표.png" alt="단가표" className="max-w-full h-auto" />
         <p className="text-sm text-gray-500 mt-4">부가세 미포함</p>
         <p className="text-sm text-gray-500">※계좌이체 입금</p>
         <p className="text-sm text-gray-500">※세금계산서 발행 가능합니다.</p>
