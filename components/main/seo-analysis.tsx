@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { fetchProductInfo } from "@/fetch/analysis/analysis-api";
 import { useMutation } from "@tanstack/react-query";
 import { Textarea } from "@/components/ui/textarea";
-
+import Image from "next/image";
 export const SeoAnalysis = () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const [productInfo, setProductInfo] = useState<any>(null);
@@ -126,6 +126,13 @@ export const SeoAnalysis = () => {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
+                <Image
+                  width={200}
+                  height={200}
+                  alt={productInfo.name || "상품 이미지"}
+                  src={productInfo.image_url}
+                />
+                <br />
                 <span className="text-sm text-gray-600">상품명</span>
               </div>
             </CardContent>

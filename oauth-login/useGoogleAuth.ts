@@ -19,6 +19,7 @@ declare global {
           initialize: (options: {
             client_id: string;
             callback: (response: GoogleAuthResponse) => void;
+            auto_select?: boolean;
           }) => void;
           renderButton: (
             parentElement: HTMLElement,
@@ -90,6 +91,7 @@ export const useGoogleAuth = ({
               );
           }
         },
+        auto_select: false,
       });
     }
   }, [scriptLoaded, clientId, onSuccess, onError]);
