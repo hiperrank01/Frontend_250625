@@ -32,6 +32,7 @@ declare global {
             }
           ) => void;
           prompt: () => void;
+          disableAutoSelect: () => void;
         };
       };
     };
@@ -93,6 +94,8 @@ export const useGoogleAuth = ({
         },
         auto_select: false,
       });
+      // Google 로그인 버튼이 항상 기본 상태로 렌더링되도록 자동 선택 비활성화
+      window.google.accounts.id.disableAutoSelect();
     }
   }, [scriptLoaded, clientId, onSuccess, onError]);
 
