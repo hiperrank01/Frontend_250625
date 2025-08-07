@@ -22,6 +22,8 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
 
   useEffect(() => {
     if (scriptLoaded && buttonRef.current && window.google) {
+      // 기존 버튼이 있다면 제거하고 다시 렌더링
+      buttonRef.current.innerHTML = ''; // 기존 내용을 비웁니다.
       window.google.accounts.id.renderButton(buttonRef.current, {
         theme: theme,
         size: size,
@@ -30,7 +32,7 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
         width: width,
       });
     }
-  }, [scriptLoaded, buttonText, theme, size, type, shape, width]);
+  }, [scriptLoaded, buttonRef.current, buttonText, theme, size, type, shape, width]); // buttonRef.current를 의존성 배열에 추가
 
   return <div ref={buttonRef} className="google-signin-button"></div>;
 };
