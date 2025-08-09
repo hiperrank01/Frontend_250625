@@ -21,18 +21,36 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
   });
 
   useEffect(() => {
-    if (scriptLoaded && buttonRef.current && window.google) {
-      // 기존 버튼이 있다면 제거하고 다시 렌더링
-      buttonRef.current.innerHTML = ''; // 기존 내용을 비웁니다.
-      window.google.accounts.id.renderButton(buttonRef.current, {
-        theme: theme,
-        size: size,
-        text: type === "standard" ? buttonText : "",
-        shape: shape,
-        width: width,
+    if (scriptLoaded && window.google) {
+      // initialize는 한 번만 호출하도록 보통 useEffect 최상단에 합니다
+      window.google.accounts.id.initialize({
+        client_id: clientId,
+        callback: onSuccess,
+        auto_select: false, // 자동 로그인 UI 비활성화
       });
+
+      if (buttonRef.current) {
+        buttonRef.current.innerHTML = "";
+        window.google.accounts.id.renderButton(buttonRef.current, {
+          theme,
+          size,
+          text: type === "standard" ? buttonText : "",
+          shape,
+          width,
+        });
+      }
     }
-  }, [scriptLoaded, buttonRef.current, buttonText, theme, size, type, shape, width]); // buttonRef.current를 의존성 배열에 추가
+  }, [
+    scriptLoaded,
+    clientId,
+    onSuccess,
+    buttonText,
+    theme,
+    size,
+    type,
+    shape,
+    width,
+  ]);
 
   return <div ref={buttonRef} className="google-signin-button"></div>;
 };
