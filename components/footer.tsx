@@ -19,7 +19,7 @@ export const Footer = () => {
             <p>데이터 분석 기반 매출 최적화 전문</p>
           </div>
           <div className="space-y-2 text-sm text-gray-400">
-            <p>주소: 수원시 세류동 482-7 501호</p>
+            <p>주소:수원시 권선구 정조로 388번길 7-1 201호</p>
             <p>전화: 010-4590-4917</p>
             <p>이메일:9winit01@gmail.com</p>
             <p>사업자번호: 246-17-02470</p>

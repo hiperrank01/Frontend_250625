@@ -39,28 +39,26 @@ export const Header = () => {
     <>
       {isMobileView ? (
         <SheetClose asChild>
-          <button
+          <a
+            href="/down/나인위닛-회사소개서v2025.pdf" // public/sample.pdf
+            download
             className={`hover:text-gray-300 transition-colors ${
               isMobileView ? "block w-full text-left py-2" : ""
             }`}
-            onClick={() => {
-              router.push("intro");
-            }}
           >
-            서비스 소개
-          </button>
+            회사 소개서
+          </a>
         </SheetClose>
       ) : (
-        <button
+        <a
+          href="/down/나인위닛-회사소개서v2025.pdf" // public/sample.pdf
+          download
           className={`hover:text-gray-300 transition-colors ${
             isMobileView ? "block w-full text-left py-2" : ""
           }`}
-          onClick={() => {
-            router.push("intro");
-          }}
         >
-          서비스 소개
-        </button>
+          회사 소개서
+        </a>
       )}
 
       {isMobileView ? (

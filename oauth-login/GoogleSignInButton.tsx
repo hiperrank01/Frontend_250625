@@ -22,11 +22,10 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
 
   useEffect(() => {
     if (scriptLoaded && window.google) {
-      // initialize는 한 번만 호출하도록 보통 useEffect 최상단에 합니다
       window.google.accounts.id.initialize({
         client_id: clientId,
         callback: onSuccess,
-        auto_select: false, // 자동 로그인 UI 비활성화
+        auto_select: false,
       });
 
       if (buttonRef.current) {
