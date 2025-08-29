@@ -69,6 +69,11 @@ export const ProModal = ({
             </Button>
           </div>
         </CardContent>
+        <div className="text-center p-2">
+          <p>국민 242401-04-434624</p>
+          <p> 세금계산서 발행 가능 </p>
+          <p>입금 후 확인시 멤버십으로 변경해드립니다. </p>
+        </div>
       </Card>
     </div>
   );

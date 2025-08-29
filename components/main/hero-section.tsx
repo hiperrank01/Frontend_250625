@@ -88,7 +88,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Final CTA */}
         <div
           className={`transition-all duration-1000 delay-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"

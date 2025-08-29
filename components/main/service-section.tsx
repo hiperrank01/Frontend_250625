@@ -33,13 +33,6 @@ export const ServiceSection = ({ setShowMembership }: ServiceSectionProps) => {
               {service.id === "seo-analysis" && <SeoAnalysis />}
               {service.id !== "seo-analysis" && (
                 <div className=" items-start justify-center gap-8 py-1">
-                  <>
-                    <div className="mb-4">{service.icon}</div>
-                    <h3 className="text-lg font-semibold mb-2">
-                      {service.title}
-                    </h3>
-                  </>
-                  <p className="text-gray-600 mb-4 ">{service.description}</p>
                   {service.id !== "seo-analysis" && (
                     <div className="flex flex-col items-center justify-center gap-8 py-1">
                       {service.text
