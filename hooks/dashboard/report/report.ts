@@ -17,7 +17,7 @@ export const useReportQuery = (
   return useQuery<any, Error>({
     queryKey: ["chartData", customer_id, year, month],
     queryFn: () => {
-      const accessToken = localStorage.getItem("accessToken") || "";
+      const accessToken = typeof window !== 'undefined' ? localStorage.getItem("accessToken") || "" : "";
       return fetchChartData({ customer_id, year, month }, accessToken);
     },
     enabled: enabled,
@@ -28,7 +28,7 @@ export const useAvailableYearsQuery = () => {
   return useQuery<string[], Error>({
     queryKey: ["availableYears"],
     queryFn: () => {
-      const accessToken = localStorage.getItem("accessToken") || "";
+      const accessToken = typeof window !== 'undefined' ? localStorage.getItem("accessToken") || "" : "";
       return fetchAvailableYears(accessToken);
     },
   });
@@ -43,7 +43,7 @@ export const useSummaryGridDataQuery = (
   return useQuery<any, Error>({
     queryKey: ["summaryGridData", customer_id, year, month],
     queryFn: () => {
-      const accessToken = localStorage.getItem("accessToken") || "";
+      const accessToken = typeof window !== 'undefined' ? localStorage.getItem("accessToken") || "" : "";
       return fetchSummaryGridData(
         { customer_id, year, month }, // Added customer_id
         accessToken
@@ -62,7 +62,7 @@ export const useComparisonGridDataQuery = (
   return useQuery<any, Error>({
     queryKey: ["comparisonGridData", customer_id, year, month],
     queryFn: () => {
-      const accessToken = localStorage.getItem("accessToken") || "";
+      const accessToken = typeof window !== 'undefined' ? localStorage.getItem("accessToken") || "" : "";
       return fetchComparisonGridData(
         { customer_id, year, month }, // Added customer_id
         accessToken
@@ -81,7 +81,7 @@ export const useHistoryGridDataQuery = (
   return useQuery<any, Error>({
     queryKey: ["historyGridData", customer_id, year, month],
     queryFn: () => {
-      const accessToken = localStorage.getItem("accessToken") || "";
+      const accessToken = typeof window !== 'undefined' ? localStorage.getItem("accessToken") || "" : "";
       return fetchHistoryGridData(
         { customer_id, year, month }, // Added customer_id
         accessToken
@@ -100,7 +100,7 @@ export const useMonthlyReportSummaryDataQuery = (
   return useQuery<any, Error>({
     queryKey: ["monthlyReportSummaryData", customer_id, year, month],
     queryFn: () => {
-      const accessToken = localStorage.getItem("accessToken") || "";
+      const accessToken = typeof window !== 'undefined' ? localStorage.getItem("accessToken") || "" : "";
       return fetchMonthlyReportSummaryData(
         { customer_id, year, month },
         accessToken

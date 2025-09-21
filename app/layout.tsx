@@ -1,4 +1,4 @@
-import type React from "react";
+import type React, { Suspense } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
@@ -56,7 +56,9 @@ export default function RootLayout({
         </Script>
 
         <Providers>
-          <Header />
+          <Suspense fallback={<div className="h-[72px] w-full bg-black" />}>
+            <Header />
+          </Suspense>
           {children}
           <Footer />
         </Providers>

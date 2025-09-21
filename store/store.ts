@@ -1,6 +1,13 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { AuthState } from "@/types/zustand";
+
+// A storage implementation that does nothing on the server
+const dummyStorage = {
+  getItem: () => null,
+  setItem: () => {},
+  removeItem: () => {},
+};
 
 export const useAuthStore = create<AuthState>()(
   persist(
@@ -24,6 +31,9 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: "userInfoStorage",
+      storage: createJSONStorage(() =>
+        typeof window !== "undefined" ? window.localStorage : dummyStorage
+      ),
       onRehydrateStorage: () => (state) => {
         state?.setHydrated(true);
       },
