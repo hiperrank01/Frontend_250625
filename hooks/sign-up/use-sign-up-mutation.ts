@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { SignUp } from "@/fetch/auth-api";
-import { SignUpRequest } from "@/types/sign-up"; // SignUpRequest 타입이 필요합니다.
+import { SignUpRequest } from "@/types/sign-up";
 
 interface UseSignUpMutationOptions {
   onSuccess?: () => void;

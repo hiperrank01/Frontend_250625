@@ -19,7 +19,11 @@ const NaverCallback = () => {
       localStorage.setItem("refreshToken", data.refresh);
       useAuthStore
         .getState()
-        .setAuth(data.access, data.user.eml_adr, data.user.nm);
+        .setAuth({
+          accessToken: data.access,
+          email: data.user.eml_adr,
+          nm: data.user.nm,
+        });
       toast.success("네이버 계정으로 로그인되었습니다!");
       router.push("/"); // 로그인 성공 후 메인 페이지로 이동
     },

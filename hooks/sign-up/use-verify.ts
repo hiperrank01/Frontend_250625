@@ -4,7 +4,6 @@ import { useMutation } from "@tanstack/react-query";
 import { verify, API_PATHS } from "@/fetch/auth-api";
 import { VerifyRequest } from "@/types/auth";
 
-// 인증코드 요청을 위한 커스텀 훅
 export const useRequestCode = (options?: {
   onSuccess?: () => void;
   onError?: (error: Error) => void;

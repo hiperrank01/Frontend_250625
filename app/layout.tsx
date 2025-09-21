@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { Providers } from "./providers";
 import { Toaster } from "sonner";
 
@@ -53,7 +55,11 @@ export default function RootLayout({
           `}
         </Script>
 
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
         <Toaster richColors position="top-center" />
       </body>
     </html>

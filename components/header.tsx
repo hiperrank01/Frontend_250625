@@ -17,6 +17,9 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useToast } from "@/hooks/use-toast";
+import { Toaster } from "@/components/ui/toaster";
+
 export const Header = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -26,6 +29,19 @@ export const Header = () => {
   const logout = useLogout();
   const { accessToken, isHydrated } = useAuthStore();
   const isMobile = useIsMobile();
+  const { toast } = useToast();
+
+  const handleDashboardClick = () => {
+    if (accessToken) {
+      router.push("/dashboard");
+    } else {
+      setShowAuth(true);
+      toast({
+        title: "로그인이 필요합니다.",
+        description: "대시보드에 접근하려면 로그인하세요.",
+      });
+    }
+  };
 
   if (!isHydrated) {
     return (
@@ -87,7 +103,7 @@ export const Header = () => {
         isMobileView ? (
           <SheetClose asChild>
             <button
-              onClick={() => logout()} // 로그인된 상태 → 로그아웃
+              onClick={() => logout()}
               className={`hover:text-gray-300 transition-colors ${
                 isMobileView ? "block w-full text-left py-2" : ""
               }`}
@@ -97,7 +113,7 @@ export const Header = () => {
           </SheetClose>
         ) : (
           <button
-            onClick={() => logout()} // 로그인된 상태 → 로그아웃
+            onClick={() => logout()}
             className={`hover:text-gray-300 transition-colors ${
               isMobileView ? "block w-full text-left py-2" : ""
             }`}
@@ -108,7 +124,7 @@ export const Header = () => {
       ) : isMobileView ? (
         <SheetClose asChild>
           <button
-            onClick={() => setShowAuth(true)} // 로그인 안 된 상태 → 로그인 모달 열기
+            onClick={() => setShowAuth(true)}
             className={`hover:text-gray-300 transition-colors ${
               isMobileView ? "block w-full text-left py-2" : ""
             }`}
@@ -118,7 +134,7 @@ export const Header = () => {
         </SheetClose>
       ) : (
         <button
-          onClick={() => setShowAuth(true)} // 로그인 안 된 상태 → 로그인 모달 열기
+          onClick={() => setShowAuth(true)}
           className={`hover:text-gray-300 transition-colors ${
             isMobileView ? "block w-full text-left py-2" : ""
           }`}
@@ -152,6 +168,15 @@ export const Header = () => {
       ) : (
         ""
       )}
+
+      <button
+        onClick={handleDashboardClick}
+        className={`hover:text-gray-300 transition-colors ${
+          isMobileView ? "block w-full text-left py-2" : ""
+        }`}
+      >
+        대시보드
+      </button>
       {isMobileView ? (
         <SheetClose asChild>
           <button
@@ -230,6 +255,7 @@ export const Header = () => {
         setShowMembership={setShowMembership}
       />
       <AuthModal isOpen={showAuth} onClose={() => setShowAuth(false)} />
+      <Toaster />
     </header>
   );
 };

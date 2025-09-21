@@ -15,8 +15,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Check, CreditCard, Shield, Star } from "lucide-react";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 export default function ProSignupPage() {
   const [selectedPlan, setSelectedPlan] = useState("3month");
   const [step, setStep] = useState(1);
@@ -59,7 +57,6 @@ export default function ProSignupPage() {
   if (step === 1) {
     return (
       <>
-        <Header />
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -125,7 +122,6 @@ export default function ProSignupPage() {
             </Card>
           </div>
         </div>
-        <Footer />
       </>
     );
   }

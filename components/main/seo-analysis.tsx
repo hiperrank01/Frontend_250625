@@ -9,10 +9,28 @@ import { fetchProductInfo } from "@/fetch/analysis/analysis-api";
 import { useMutation } from "@tanstack/react-query";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
+
+interface ProductInfo {
+  rank: number;
+  price: number;
+  name: string;
+  image_url: string;
+  product_name: string;
+}
+
+interface Slot {
+  id: number | string;
+  platform: {
+    name: string;
+  };
+  keyword: string;
+  rank: number;
+}
+
 export const SeoAnalysis = () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  const [productInfo, setProductInfo] = useState<any>(null);
-  const [mySlots, setMySlots] = useState<any[]>([]);
+  const [productInfo, setProductInfo] = useState<ProductInfo | null>(null);
+  const [mySlots, setMySlots] = useState<Slot[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const [keyword, setKeyword] = useState("");

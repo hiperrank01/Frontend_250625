@@ -149,7 +149,7 @@ export function EmailVerifyModal({
               shape="rectangular"
               width="100%"
             />
-            <NaverSignInButton />
+            <NaverSignInButton type="button" />
           </div>
         ) : (
           <div className="grid gap-4 py-4">
