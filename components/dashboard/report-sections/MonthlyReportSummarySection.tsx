@@ -20,7 +20,7 @@ interface MonthlyReportSummarySectionProps {
 
 interface Item {
   name: string;
-  percentText: string | null; // e.g. "+19.0%"
+  percentText: string | null;
   prevAmount: number | null;
   currAmount: number | null;
   raw: string;
