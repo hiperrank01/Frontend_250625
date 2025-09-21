@@ -1,3 +1,4 @@
+"use client";
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MessageSquare } from "lucide-react";
 import { services } from "@/data/service-data";
