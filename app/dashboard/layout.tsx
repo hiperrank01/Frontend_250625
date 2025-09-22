@@ -10,7 +10,7 @@ export default function DashboardLayout({
 }) {
   return (
     <SidebarProvider>
-      <Sidebar className="top-[72px]">
+      <Sidebar collapsible="icon" className="top-[72px]">
         <DashboardSidebarNav />
       </Sidebar>
       <SidebarInset className="pt-[72px]">{children}</SidebarInset>

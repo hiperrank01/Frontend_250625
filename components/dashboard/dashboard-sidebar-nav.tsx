@@ -15,6 +15,7 @@ import {
   SidebarMenuSubItem,
   SidebarHeader,
   SidebarContent,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 export function DashboardSidebarNav() {
@@ -29,11 +30,15 @@ export function DashboardSidebarNav() {
 
   return (
     <React.Fragment>
-      <SidebarHeader>
-        <h2 className="px-3 py-2 text-lg font-semibold tracking-tight">
-          대시보드
-        </h2>
+      <SidebarHeader className="flex items-center">
+        <div className="flex">
+          <h2 className="px-3 py-2 text-lg font-semibold tracking-tight flex group-data-[collapsible=icon]:hidden">
+            대시보드
+          </h2>
+          <SidebarTrigger className="hidden md:flex" />
+        </div>
       </SidebarHeader>
+
       <SidebarContent>
         <SidebarMenu>
           <SidebarMenuItem>
