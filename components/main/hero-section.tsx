@@ -19,10 +19,10 @@ export default function HeroSection() {
           }`}
         >
           <h1 className="text-2xl md:text-2xl font-bold text-black mb-2 leading-tight">
-            데이터 분석 기반
+            매출 성장 최적화
             <br />
             <span className=" text-black px-4 py-0 inline-block">
-              매출 성장 최적화 전문 서비스
+              광고 성과 자동화 대시보드 전문
             </span>
           </h1>
         </div>
@@ -33,7 +33,7 @@ export default function HeroSection() {
           }`}
         >
           <p className="text-xl md:text-xl text-gray-600 mb-2 font-light">
-            &quot;온라인셀러와 마케터분들 자동화 보고서 필요하신가요?&quot;
+            "네이버/구글/메타 등 매체별 놓치고 있는 키워드는 없나?"{" "}
           </p>
         </div>
 
@@ -48,18 +48,39 @@ export default function HeroSection() {
                 &quot;광고 매출/효율 Maximum으로 올리는 방법은?&quot;
               </blockquote>
             </div>
-
+            <div className="group">
+              <blockquote className=" hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-2 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
+                &quot;네이버/구글/메타 등 매체별 놓치고 있는 키워드는
+                없나?&quot;
+              </blockquote>
+            </div>
+            <div className="group">
+              <blockquote className=" hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-2 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
+                &quot;초기 스타트업 마케팅 어떻게 해야 할지 모를 때&quot;
+              </blockquote>
+            </div>
             <div className="group">
               <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
                 &quot;상품 5개만 넘어가도 무엇을 어떻게 집중해야할지 모르는
                 대행사들, 어떻게 관리해야할까?&quot;
               </blockquote>
             </div>
-
+            <div className="group">
+              <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
+                &quot;API만 연결하면 CTR, 전환율, ROAS등의 데이터 지표를
+                자동으로&quot;
+              </blockquote>
+            </div>
             <div className="group">
               <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
                 &quot;네이버/구글/메타 등 매체별 놓치고 있는 키워드는
                 없나?&quot;
+              </blockquote>
+            </div>
+            <div className="group">
+              <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
+                &quot;API만 연결하면 CTR, 전환율, ROAS등의 데이터 지표를
+                자동으로&quot;
               </blockquote>
             </div>
           </div>

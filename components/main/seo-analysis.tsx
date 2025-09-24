@@ -116,48 +116,55 @@ export const SeoAnalysis = () => {
       {error && <div className="text-red-500">{error}</div>}
 
       {productInfo && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* 왼쪽: 이미지 */}
           <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">현재 순위</span>
-              </div>
-            </CardContent>
-            <div className="text-center p-4">
-              <Badge className="text-2xl " variant="secondary">
-                {productInfo.rank}위
-              </Badge>
-            </div>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">예상 매출</span>
-              </div>
-            </CardContent>
-            <div className="text-center p-4">
-              <span className=" font-bold text-xl p-1">
-                ₩{productInfo.price?.toLocaleString()}
-              </span>
-            </div>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
+            <CardContent className="p-4 text-center">
+              <span className="text-sm text-gray-600 block mb-2">이미지</span>
+              <div className="flex justify-center">
                 <Image
+                  className="rounded-lg shadow-lg mt-6 hover:scale-110 transition-transform duration-300"
+                  style={{ boxShadow: "4px 8px 10px rgba(0,0,0,0.3)" }}
                   width={200}
                   height={200}
                   alt={productInfo.name || "상품 이미지"}
                   src={productInfo.image_url}
                 />
-                <br />
-                <span className="text-sm text-gray-600">상품명</span>
               </div>
             </CardContent>
-            <div className="mt-2 text-center p-3">
-              {productInfo.product_name}
-            </div>
           </Card>
+
+          {/* 오른쪽: 나머지 3개 카드 세로 배치 */}
+          <div className="flex flex-col gap-4">
+            <Card>
+              <CardContent className="p-4 text-center">
+                <span className="text-sm text-gray-600 block mb-2">상품명</span>
+                <div className="mt-2 font-bold">{productInfo.product_name}</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-4 text-center">
+                <span className="text-sm text-gray-600 block mb-2">
+                  현재 순위
+                </span>
+                <Badge className="text-2xl" variant="secondary">
+                  {productInfo.rank}위
+                </Badge>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-4 text-center">
+                <span className="text-sm text-gray-600 block mb-2">
+                  예상 매출
+                </span>
+                <span className="font-bold text-xl text-red-500">
+                  ₩{productInfo.price?.toLocaleString()}
+                </span>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       )}
       {mySlots.length > 0 && (

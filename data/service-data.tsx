@@ -8,10 +8,7 @@ import {
   ImageIcon,
 } from "lucide-react";
 import { SERVICE_TYPE } from "@/types/service-data";
-import Report1 from "@/public/report/report-1.png";
-import Report2 from "@/public/report/report-2.png";
-import Report3 from "@/public/report/report-3.png";
-import Report4 from "@/public/report/report-4.png";
+
 export const services: SERVICE_TYPE = [
   {
     id: "seo-analysis",
@@ -64,6 +61,10 @@ export const services: SERVICE_TYPE = [
     icon: <Users className="w-6 h-6" />,
     description: "루커스튜디오 연동 CRM, 코호트, AARRR 퍼널 분석",
     text: [
+      { content: <img src="/ga/ga활용1.png" /> },
+      { content: <img src="/ga/ga활용2.png" /> },
+      { content: <img src="/ga/ga활용3.png" /> },
+      { content: <img src="/ga/ga활용4.png" /> },
       {
         content: "1. 구글애즈 ➡️  리마케팅 | 구글 태그매니저 | 검색어 리포트",
       },
