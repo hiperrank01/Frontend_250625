@@ -20,23 +20,13 @@ interface HistoryData {
 
 interface HistoryGridSectionProps {
   data: HistoryData | undefined;
-  isLoading: boolean;
   error: Error | null;
 }
 
 export const HistoryGridSection = ({
   data,
-  isLoading,
   error,
 }: HistoryGridSectionProps) => {
-  if (isLoading) {
-    return (
-      <p className="text-center mt-8">
-        히스토리 그리드 데이터를 불러오는 중...
-      </p>
-    );
-  }
-
   if (error) {
     return (
       <p className="text-center text-red-500 mt-8">

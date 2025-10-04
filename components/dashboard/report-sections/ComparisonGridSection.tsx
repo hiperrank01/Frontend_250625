@@ -15,21 +15,18 @@ interface ComparisonGridSection {
   data: {
     rows: RowData[];
   };
-  isLoading: boolean;
   error: Error | null;
 }
 
 const ComparisonGridSection: React.FC<ComparisonGridSection> = ({
   data,
-  isLoading,
   error,
 }) => {
-  if (isLoading) return <div className="text-center py-8">로딩 중...</div>;
   if (error)
     return (
       <div className="text-center py-8 text-red-500">에러: {error.message}</div>
     );
-  if (!data?.rows) return null;
+  if (!data?.rows || data.rows.length === 0) return null;
 
   return (
     <>

@@ -1,3 +1,4 @@
+// 차트 데이터 조회
 export const fetchChartData = async (
   data: { customer_id: string; year: string; month: string },
   accessToken: string
@@ -16,8 +17,25 @@ export const fetchChartData = async (
   return res.json();
 };
 
+// 고객 정보 조회
+export const CustomerInfo = async (accessToken: string) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/ncc/user-customers`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  if (!res.ok) throw new Error("고객 정보 조회 실패");
+  return res.json();
+};
+
+// 비교 그리드 데이터 조회
 export const fetchComparisonGridData = async (
-  data: { customer_id: string; year: string; month: string }, // Added customer_id
+  data: { customer_id: string; year: string; month: string },
   accessToken: string
 ) => {
   const res = await fetch(
@@ -34,6 +52,7 @@ export const fetchComparisonGridData = async (
   return res.json();
 };
 
+// 히스토리 그리드 데이터 조회
 export const fetchHistoryGridData = async (
   data: { customer_id: string; year: string; month: string }, // Added customer_id
   accessToken: string
@@ -52,6 +71,7 @@ export const fetchHistoryGridData = async (
   return res.json();
 };
 
+// 월간 리포트 요약 데이터 조회
 export const fetchMonthlyReportSummaryData = async (
   data: { customer_id: string; year: string; month: string },
   accessToken: string
@@ -70,6 +90,7 @@ export const fetchMonthlyReportSummaryData = async (
   return res.text();
 };
 
+// 요약 그리드 데이터 조회
 export const fetchSummaryGridData = async (
   data: { customer_id: string; year: string; month: string }, // Added customer_id
   accessToken: string
@@ -88,6 +109,7 @@ export const fetchSummaryGridData = async (
   return res.json();
 };
 
+// 가능한 연도 조회
 export const fetchAvailableYears = async (accessToken: string) => {
   console.log("Fetching available years with token:", accessToken);
   await new Promise((resolve) => setTimeout(resolve, 500));

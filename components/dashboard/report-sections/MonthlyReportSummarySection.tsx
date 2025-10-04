@@ -14,7 +14,6 @@ type ReportData = string | SummaryObject | NestedSummaryObject;
 
 interface MonthlyReportSummarySectionProps {
   data: ReportData | undefined | null;
-  isLoading: boolean;
   error: Error | null;
 }
 
@@ -92,15 +91,8 @@ const parseLine = (line: string): Item => {
 
 export const MonthlyReportSummarySection = ({
   data,
-  isLoading,
   error,
 }: MonthlyReportSummarySectionProps) => {
-  if (isLoading)
-    return (
-      <p className="text-center mt-8">
-        월간 리포트 요약 데이터를 불러오는 중...
-      </p>
-    );
   if (error)
     return (
       <p className="text-center text-red-500 mt-8">

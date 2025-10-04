@@ -22,6 +22,7 @@ import { SummaryGridSection } from "@/components/dashboard/report-sections/Summa
 import ComparisonGridSection from "@/components/dashboard/report-sections/ComparisonGridSection";
 import { HistoryGridSection } from "@/components/dashboard/report-sections/HistoryGridSection";
 import { MonthlyReportSummarySection } from "@/components/dashboard/report-sections/MonthlyReportSummarySection";
+import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 
 const CustomerReportPage = ({ params }: { params: { customerId: string } }) => {
   const { customerId } = params;
@@ -65,6 +66,13 @@ const CustomerReportPage = ({ params }: { params: { customerId: string } }) => {
     enabledQuery
   );
 
+  const isAnythingLoading =
+    isChartLoading ||
+    isLoadingSummaryGrid ||
+    isLoadingComparisonGrid ||
+    isLoadingHistoryGrid ||
+    isLoadingMonthlyReportSummary;
+
   const chartData = chartRawData?.rows || [];
   const chartConfig = {
     impCnt: { label: "노출수", color: "#2563eb" },
@@ -77,19 +85,19 @@ const CustomerReportPage = ({ params }: { params: { customerId: string } }) => {
 
   return (
     <div className="flex flex-col w-full min-h-screen py-8 px-4">
-        <Breadcrumb className="mb-4">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/dashboard">대시보드</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>고객 {customerId} 보고서</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <Breadcrumb className="mb-4">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/dashboard">대시보드</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>고객 {customerId} 보고서</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
       <h1 className="text-4xl font-bold">고객 {customerId} 보고서</h1>
 
@@ -101,41 +109,52 @@ const CustomerReportPage = ({ params }: { params: { customerId: string } }) => {
       />
 
       <div className="mt-8 w-full max-w-6xl self-center">
-        {isChartLoading && (
-          <p className="text-center">차트 데이터를 불러오는 중...</p>
-        )}
-        {chartError && (
-          <p className="text-center text-red-500">에러: {chartError.message}</p>
-        )}
-        {chartData.length > 0 && !isChartLoading && !chartError && (
-          <MonthlyReportChart chartData={chartData} chartConfig={chartConfig} />
-        )}
-        {chartData.length === 0 && !isChartLoading && !chartError && (
+        {isAnythingLoading ? (
           <div className="flex items-center justify-center h-96">
-            <p>선택된 기간에 대한 차트 데이터가 없습니다.</p>
+            <LoadingSpinner />
           </div>
-        )}
+        ) : (
+          <>
+            {chartError && (
+              <p className="text-center text-red-500">
+                차트 에러: {chartError.message}
+              </p>
+            )}
+            {chartData.length > 0 && !chartError && (
+              <MonthlyReportChart
+                chartData={chartData}
+                chartConfig={chartConfig}
+              />
+            )}
+            {chartData.length === 0 && !chartError && !enabledQuery && (
+              <div className="flex items-center justify-center h-96">
+                <p>리포트를 보시려면 기간을 선택해주세요.</p>
+              </div>
+            )}
+            {chartData.length === 0 && !chartError && enabledQuery && (
+              <div className="flex items-center justify-center h-96">
+                <p>선택된 기간에 대한 차트 데이터가 없습니다.</p>
+              </div>
+            )}
 
-        <SummaryGridSection
-          data={summaryGridData}
-          isLoading={isLoadingSummaryGrid}
-          error={errorSummaryGrid}
-        />
-        <ComparisonGridSection
-          data={comparisonGridData}
-          isLoading={isLoadingComparisonGrid}
-          error={errorComparisonGrid}
-        />
-        <HistoryGridSection
-          data={historyGridData}
-          isLoading={isLoadingHistoryGrid}
-          error={errorHistoryGrid}
-        />
-        <MonthlyReportSummarySection
-          data={monthlyReportSummaryData}
-          isLoading={isLoadingMonthlyReportSummary}
-          error={errorMonthlyReportSummary}
-        />
+            <SummaryGridSection
+              data={summaryGridData}
+              error={errorSummaryGrid}
+            />
+            <ComparisonGridSection
+              data={comparisonGridData}
+              error={errorComparisonGrid}
+            />
+            <HistoryGridSection
+              data={historyGridData}
+              error={errorHistoryGrid}
+            />
+            <MonthlyReportSummarySection
+              data={monthlyReportSummaryData}
+              error={errorMonthlyReportSummary}
+            />
+          </>
+        )}
       </div>
     </div>
   );
