@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import mainLogo from "@/public/Logo_Main.png";
 import Image from "next/image";
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,7 +32,7 @@ export default function HeroSection() {
           }`}
         >
           <p className="text-xl md:text-xl text-gray-600 mb-2 font-light">
-            "네이버/구글/메타 등 매체별 놓치고 있는 키워드는 없나?"{" "}
+            &quot;네이버/구글/메타 등 매체별 놓치고 있는 키워드는 없나?&quot;
           </p>
         </div>
 
@@ -76,15 +75,15 @@ export default function HeroSection() {
         >
           <div className="py-0 rounded-xl">
             <p className="text-lg md:text-lg mb-0 text-black">
-              매체별 데이터 분석 기반 마케팅 전략 도출 전문 광고대행
+              데이터분석 & 온라인마케팅
             </p>
 
             <p className="text-lg md:text-xl text-black mb-2">
-              상품별/키워드별 자동화로 매출을 극대화해드립니다.
+              매체/캠페인/소재/키워드별 매출 극대화
             </p>
             <Image
               className="text-center block mx-auto"
-              src={mainLogo.src}
+              src="/Logo_Main.png"
               width={200}
               height={60}
               alt="나인위닛 로고"

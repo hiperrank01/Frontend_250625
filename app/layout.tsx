@@ -12,11 +12,37 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ninewinit.store"),
   title: "나인위닛 - 스마트스토어 SEO 최적화 솔루션",
   description:
     "데이터 기반 스마트스토어 SEO 분석 및 광고 최적화 서비스. 매출 성장을 위한 전문 솔루션을 제공합니다.",
   keywords: "스마트스토어, SEO, 네이버쇼핑, 광고최적화, 키워드분석",
   generator: "v0.dev",
+
+  openGraph: {
+    type: "website",
+    url: "https://ninewinit.store",
+    title: "나인위닛 - 스마트스토어 SEO 최적화 솔루션",
+    description:
+      "데이터 기반 스마트스토어 SEO 분석 및 광고 최적화 서비스. 매출 성장을 위한 전문 솔루션을 제공합니다.",
+    siteName: "Ninewinit",
+    images: [
+      {
+        url: "/og_img.png",
+        width: 260,
+        height: 80,
+        alt: "Ninewinit 미리보기 이미지",
+      },
+    ],
+    locale: "ko_KR",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "나인위닛 - 스마트스토어 SEO 최적화 솔루션",
+    description: "데이터 기반 스마트스토어 SEO 분석 및 광고 최적화 서비스.",
+    images: ["/Logo_Main.png"],
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
