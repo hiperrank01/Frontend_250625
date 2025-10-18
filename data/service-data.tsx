@@ -11,6 +11,19 @@ import { SERVICE_TYPE } from "@/types/service-data";
 
 export const services: SERVICE_TYPE = [
   {
+    id: "media-report",
+    title: "매체별 보고서",
+    icon: <BarChart3 className="w-6 h-6" />,
+    description:
+      "네이버, 구글, 메타, 틱톡, 카카오 등 매체별 광고 효율 비교 분석",
+    text: [
+      { content: <img src="/매체별보고서_1.png" /> },
+      { content: <img src="/매체별보고서_2.png" /> },
+      { content: <img src="/매체별보고서_3.png" /> },
+      { content: <img src="/매체별보고서_4.png" /> },
+    ],
+  },
+  {
     id: "seo-analysis",
     title: "쇼핑검색 상품/키워드 분석",
     icon: <Search className="w-6 h-6" />,
@@ -28,6 +41,8 @@ export const services: SERVICE_TYPE = [
           "➡️-자사 경쟁사 프로그램 활용한 키워드별 판매량 높은 상품 추적",
       },
       { content: "➡️브랜드 스토리, 철학, 인지도, 마케팅 차별화 포인트" },
+      { content: <img src="/competitor_01.png" /> },
+      { content: <img src="/competitor_02.png" /> },
     ],
   },
   // {
@@ -36,19 +51,7 @@ export const services: SERVICE_TYPE = [
   //   icon: <FileText className="w-6 h-6" />,
   //   description: "캠페인별 노출수, 클릭수, 광고비, 매출액, ROAS 자동 리포팅",
   // },
-  {
-    id: "media-report",
-    title: "매체별 보고서",
-    icon: <BarChart3 className="w-6 h-6" />,
-    description:
-      "네이버, 구글, 메타, 틱톡, 카카오 등 매체별 광고 효율 비교 분석",
-    text: [
-      { content: <img src="/매체별보고서_1.png" /> },
-      { content: <img src="/매체별보고서_2.png" /> },
-      { content: <img src="/매체별보고서_3.png" /> },
-      { content: <img src="/매체별보고서_4.png" /> },
-    ],
-  },
+
   // {
   //   id: "auto-bid",
   //   title: "자동입찰",
