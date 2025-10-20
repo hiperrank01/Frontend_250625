@@ -16,7 +16,7 @@ interface TabNavProps {
 
 export const TabNav = ({ onTabChange }: TabNavProps) => {
   const searchParams = useSearchParams();
-  const currentTab = searchParams.get("tab") || "seo-analysis";
+  const currentTab = searchParams.get("tab") || "media-report";
 
   const handleTabChange = (value: string) => {
     const params = new URLSearchParams(searchParams);

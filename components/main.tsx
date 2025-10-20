@@ -11,7 +11,7 @@ import { InquirySection } from "./main/inquiry-section";
 export const Main = () => {
   const [showMembership, setShowMembership] = useState(false);
   const searchParams = useSearchParams();
-  const activeTab = searchParams.get("tab") || "seo-analysis";
+  const activeTab = searchParams.get("tab") || "media-report";
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-0">
