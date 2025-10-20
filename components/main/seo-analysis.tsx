@@ -59,6 +59,11 @@ export const SeoAnalysis = () => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) return;
 
+    if (!baseUrl) {
+      console.error("API URL이 설정되지 않았습니다.");
+      return;
+    }
+
     try {
       const response = await fetch(`${baseUrl}/api/slots/my_slots/`, {
         headers: {
