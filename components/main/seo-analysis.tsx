@@ -117,7 +117,6 @@ export const SeoAnalysis = () => {
 
       {productInfo && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* 왼쪽: 이미지 */}
           <Card>
             <CardContent className="p-4 text-center">
               <span className="text-sm text-gray-600 block mb-2">이미지</span>
@@ -134,7 +133,6 @@ export const SeoAnalysis = () => {
             </CardContent>
           </Card>
 
-          {/* 오른쪽: 나머지 3개 카드 세로 배치 */}
           <div className="flex flex-col gap-4">
             <Card>
               <CardContent className="p-4 text-center">

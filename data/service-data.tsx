@@ -12,16 +12,11 @@ import { SERVICE_TYPE } from "@/types/service-data";
 export const services: SERVICE_TYPE = [
   {
     id: "media-report",
-    title: "매체별 보고서",
+    title: "대시보드",
     icon: <BarChart3 className="w-6 h-6" />,
     description:
       "네이버, 구글, 메타, 틱톡, 카카오 등 매체별 광고 효율 비교 분석",
-    text: [
-      { content: <img src="/매체별보고서_1.png" /> },
-      { content: <img src="/매체별보고서_2.png" /> },
-      { content: <img src="/매체별보고서_3.png" /> },
-      { content: <img src="/매체별보고서_4.png" /> },
-    ],
+    text: [{ content: <img src="/report/report_00.png" /> }],
   },
   {
     id: "seo-analysis",
@@ -41,8 +36,10 @@ export const services: SERVICE_TYPE = [
           "➡️-자사 경쟁사 프로그램 활용한 키워드별 판매량 높은 상품 추적",
       },
       { content: "➡️브랜드 스토리, 철학, 인지도, 마케팅 차별화 포인트" },
+
       { content: <img src="/competitor_01.png" /> },
       { content: <img src="/competitor_02.png" /> },
+      { content: <img src="/competitor_03.png" /> },
     ],
   },
   // {
