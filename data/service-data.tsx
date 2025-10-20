@@ -1,12 +1,4 @@
-import {
-  FileText,
-  Search,
-  TrendingUp,
-  BarChart3,
-  Target,
-  Users,
-  ImageIcon,
-} from "lucide-react";
+import { Search, TrendingUp, BarChart3, Users, ImageIcon } from "lucide-react";
 import { SERVICE_TYPE } from "@/types/service-data";
 
 export const services: SERVICE_TYPE = [
