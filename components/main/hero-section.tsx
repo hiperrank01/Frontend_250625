@@ -65,9 +65,19 @@ export default function HeroSection() {
                 자동으로&quot;
               </blockquote>
             </div>
+            <div className="group">
+              <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
+                &quot;일반 마케터, 일반 개발자는 절대 구현 못합니다.&quot;
+              </blockquote>
+            </div>
+            <div className="group">
+              <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
+                &quot;전문가가 필요한 이유: 데이터 분석, 온라인 마케팅,
+                소프트웨어 개발, 전략 수립, 효과적인 협업&quot;
+              </blockquote>
+            </div>
           </div>
         </div>
-
         <div
           className={`transition-all duration-1000 delay-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
