@@ -28,6 +28,9 @@ export const ServiceSection = ({ setShowMembership }: ServiceSectionProps) => {
               </CardTitle>
 
               <CardDescription>{service.description}</CardDescription>
+              {service.description2 && (
+                <CardDescription>{service.description2}</CardDescription>
+              )}
             </CardHeader>
             <CardContent>
               {service.id === "seo-analysis" && <SeoAnalysis />}

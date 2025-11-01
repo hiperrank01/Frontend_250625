@@ -11,6 +11,29 @@ export const services: SERVICE_TYPE = [
     text: [{ content: <img src="/report/report_00.png" /> }],
   },
   {
+    id: "ga-analysis",
+    title: "GA 활용 고객 행동 분석",
+    icon: <Users className="w-6 h-6" />,
+    description: "루커스튜디오 연동 CRM, 코호트, AARRR 퍼널 분석 ",
+    description2:
+      "GA 연동시 전담 개발자가 필요하여 구글태그매니저 설치 등 구독이 필요합니다. 자사몰 매체별 유입 현황 트래킹리타게팅 광고 운영매체별 A,B 테스트 자동 보고서 제공",
+
+    text: [
+      { content: <img src="/ga/ga활용1.png" /> },
+      { content: <img src="/ga/ga활용2.png" /> },
+      { content: <img src="/ga/ga활용3.png" /> },
+      { content: <img src="/ga/ga활용4.png" /> },
+      {
+        content: "1. 구글애즈 ➡️  리마케팅 | 구글 태그매니저 | 검색어 리포트",
+      },
+      { content: "2. GA4 세팅 및 전환분석-전환 추적-utm 설치-태그 어시스턴트" },
+      {
+        content:
+          "3.CRM 마케팅 ➡️ 내부데이터 활용한 코호트, RFM, AARRR 퍼널 분석",
+      },
+    ],
+  },
+  {
     id: "seo-analysis",
     title: "쇼핑검색 상품/키워드 분석",
     icon: <Search className="w-6 h-6" />,
@@ -47,26 +70,7 @@ export const services: SERVICE_TYPE = [
   //   icon: <Target className="w-6 h-6" />,
   //   description: "목표 순위 기반 키워드 자동입찰 시스템",
   // },
-  {
-    id: "ga-analysis",
-    title: "GA 활용 고객 행동 분석",
-    icon: <Users className="w-6 h-6" />,
-    description: "루커스튜디오 연동 CRM, 코호트, AARRR 퍼널 분석",
-    text: [
-      { content: <img src="/ga/ga활용1.png" /> },
-      { content: <img src="/ga/ga활용2.png" /> },
-      { content: <img src="/ga/ga활용3.png" /> },
-      { content: <img src="/ga/ga활용4.png" /> },
-      {
-        content: "1. 구글애즈 ➡️  리마케팅 | 구글 태그매니저 | 검색어 리포트",
-      },
-      { content: "2. GA4 세팅 및 전환분석-전환 추적-utm 설치-태그 어시스턴트" },
-      {
-        content:
-          "3.CRM 마케팅 ➡️ 내부데이터 활용한 코호트, RFM, AARRR 퍼널 분석",
-      },
-    ],
-  },
+
   {
     id: "creative",
     title: "이미지/영상 제작",
