@@ -138,15 +138,15 @@ const CustomerReportPage = ({ params }: { params: { customerId: string } }) => {
             )}
 
             <SummaryGridSection
-              data={summaryGridData}
+              data={summaryGridData?.rows || []}
               error={errorSummaryGrid}
             />
             <ComparisonGridSection
-              data={comparisonGridData}
+              data={comparisonGridData?.rows || []}
               error={errorComparisonGrid}
             />
             <HistoryGridSection
-              data={historyGridData}
+              data={historyGridData?.rows || []}
               error={errorHistoryGrid}
             />
             <MonthlyReportSummarySection
