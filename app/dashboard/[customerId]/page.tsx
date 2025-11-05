@@ -16,11 +16,13 @@ import {
   useComparisonGridDataQuery,
   useHistoryGridDataQuery,
   useMonthlyReportSummaryDataQuery,
+  useSummeryComparisonDataQuery,
 } from "@/hooks/dashboard/report/report";
 import { MonthlyReportChart } from "@/components/dashboard/report-sections/monthly-report-chart";
 import { ReportFilters } from "@/components/dashboard/report-sections/report-filters";
 import { SummaryGridSection } from "@/components/dashboard/report-sections/SummaryGridSection";
 import ComparisonGridSection from "@/components/dashboard/report-sections/ComparisonGridSection";
+import SummeryComparisonSection from "@/components/dashboard/report-sections/SummeryComparisonSection";
 import { HistoryGridSection } from "@/components/dashboard/report-sections/HistoryGridSection";
 import { MonthlyReportSummarySection } from "@/components/dashboard/report-sections/MonthlyReportSummarySection";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
@@ -56,7 +58,16 @@ const CustomerReportPage = () => {
     isLoading: isLoadingHistoryGrid,
     error: errorHistoryGrid,
   } = useHistoryGridDataQuery(customerId, year || "", month, enabledQuery);
-
+  const {
+    data: summeryComparisonData,
+    isLoading: isLoadingSummeryComparison,
+    error: errorSummeryComparison,
+  } = useSummeryComparisonDataQuery(
+    customerId,
+    year || "",
+    month,
+    enabledQuery
+  );
   const {
     data: monthlyReportSummaryData,
     isLoading: isLoadingMonthlyReportSummary,
@@ -147,9 +158,14 @@ const CustomerReportPage = () => {
               data={comparisonGridData}
               error={errorComparisonGrid}
             />
+
             <HistoryGridSection
               data={historyGridData}
               error={errorHistoryGrid}
+            />
+            <SummeryComparisonSection
+              data={summeryComparisonData}
+              error={errorSummeryComparison}
             />
             <MonthlyReportSummarySection
               data={monthlyReportSummaryData}

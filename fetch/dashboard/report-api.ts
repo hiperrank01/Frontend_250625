@@ -115,7 +115,7 @@ export const fetchSummeryComparisonData = async (
   accessToken: string
 ) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/ncc/monthly_report/monthly-campaing-report-summary/?customer_id=${data.customer_id}&year=${data.year}&month=${data.month}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/ncc/monthly_report/monthly-campaign-report-summary/?customer_id=${data.customer_id}&year=${data.year}&month=${data.month}`,
     {
       method: "GET",
       headers: {

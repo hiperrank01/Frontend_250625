@@ -11,6 +11,7 @@ import {
 } from "@/fetch/dashboard/report-api";
 import { SummaryData } from "@/components/dashboard/report-sections/SummaryGridSection";
 import { ComparisonData } from "@/components/dashboard/report-sections/ComparisonGridSection";
+import { ReportData } from "@/components/dashboard/report-sections/SummeryComparisonSection";
 import { HistoryData } from "@/components/dashboard/report-sections/HistoryGridSection";
 
 // 타입 정의
@@ -144,7 +145,7 @@ export const useSummeryComparisonDataQuery = (
   month: string,
   enabled: boolean
 ) => {
-  return useQuery<GridData, Error>({
+  return useQuery<ReportData, Error>({
     queryKey: ["summeryComparisonData", customer_id, year, month],
     queryFn: () => {
       const accessToken =
