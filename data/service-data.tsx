@@ -19,10 +19,12 @@ export const services: SERVICE_TYPE = [
       "GA 연동시 전담 개발자가 필요하여 구글태그매니저 설치 등 구독이 필요합니다. 자사몰 매체별 유입 현황 트래킹리타게팅 광고 운영매체별 A,B 테스트 자동 보고서 제공",
 
     text: [
+      { content: <img src="/ga/AB_TEST_REPORT.png" /> },
       { content: <img src="/ga/ga활용1.png" /> },
       { content: <img src="/ga/ga활용2.png" /> },
       { content: <img src="/ga/ga활용3.png" /> },
       { content: <img src="/ga/ga활용4.png" /> },
+
       {
         content: "1. 구글애즈 ➡️  리마케팅 | 구글 태그매니저 | 검색어 리포트",
       },
