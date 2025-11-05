@@ -84,7 +84,8 @@ const CustomerReportPage = () => {
     isLoadingSummaryGrid ||
     isLoadingComparisonGrid ||
     isLoadingHistoryGrid ||
-    isLoadingMonthlyReportSummary;
+    isLoadingMonthlyReportSummary ||
+    isLoadingSummeryComparison;
 
   const chartData = chartRawData?.rows || [];
   const chartConfig = {
