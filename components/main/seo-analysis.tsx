@@ -28,9 +28,9 @@ interface Slot {
 }
 
 export const SeoAnalysis = () => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const [productInfo, setProductInfo] = useState<ProductInfo | null>(null);
-  const [mySlots, setMySlots] = useState<Slot[]>([]);
+  // const [mySlots, setMySlots] = useState<Slot[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const [keyword, setKeyword] = useState("");
