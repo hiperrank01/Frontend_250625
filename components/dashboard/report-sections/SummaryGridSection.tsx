@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
 interface SummaryRow {
   media_type: string;
@@ -13,7 +13,7 @@ interface SummaryRow {
   avg_ror: number;
 }
 
-interface SummaryData {
+export interface SummaryData {
   rows: SummaryRow[];
 }
 
@@ -28,7 +28,7 @@ export const SummaryGridSection = ({
 }: SummaryGridSectionProps) => {
   if (error) {
     return (
-      <p className='text-center text-red-500 mt-8'>
+      <p className="text-center text-red-500 mt-8">
         매체별 요약 데이터 에러: {error.message}
       </p>
     );
@@ -39,37 +39,37 @@ export const SummaryGridSection = ({
   }
 
   return (
-    <div className='mt-4'>
-      <h3 className='text-xl font-bold mb-6 text-foreground flex items-center gap-3'>
-        <div className='w-1 h-6 modern-gradient rounded-full'></div>
+    <div className="mt-4">
+      <h3 className="text-xl font-bold mb-6 text-foreground flex items-center gap-3">
+        <div className="w-1 h-6 modern-gradient rounded-full"></div>
         매체별 광고요약
       </h3>
-      <div className='bg-muted/30 rounded-2xl overflow-hidden border border-border/50 shadow-card'>
-        <table className='w-full'>
-          <thead className='bg-gradient-to-r from-muted/50 to-muted/30'>
+      <div className="bg-muted/30 rounded-2xl overflow-hidden border border-border/50 shadow-card">
+        <table className="w-full">
+          <thead className="bg-gradient-to-r from-muted/50 to-muted/30">
             <tr>
-              <th className='px-6 py-4 text-left text-foreground font-bold'>
+              <th className="px-6 py-4 text-left text-foreground font-bold">
                 매체
               </th>
-              <th className='px-6 py-4 text-right text-foreground font-bold'>
+              <th className="px-6 py-4 text-right text-foreground font-bold">
                 클릭
               </th>
-              <th className='px-6 py-4 text-right text-foreground font-bold'>
+              <th className="px-6 py-4 text-right text-foreground font-bold">
                 노출
               </th>
-              <th className='px-6 py-4 text-right text-foreground font-bold'>
+              <th className="px-6 py-4 text-right text-foreground font-bold">
                 비용
               </th>
-              <th className='px-6 py-4 text-right text-foreground font-bold'>
+              <th className="px-6 py-4 text-right text-foreground font-bold">
                 전환
               </th>
-              <th className='px-6 py-4 text-right text-foreground font-bold'>
+              <th className="px-6 py-4 text-right text-foreground font-bold">
                 전환매출
               </th>
-              <th className='px-6 py-4 text-right text-foreground font-bold'>
+              <th className="px-6 py-4 text-right text-foreground font-bold">
                 평균CPC
               </th>
-              <th className='px-6 py-4 text-right text-foreground font-bold'>
+              <th className="px-6 py-4 text-right text-foreground font-bold">
                 평균ROAS
               </th>
             </tr>
@@ -78,30 +78,30 @@ export const SummaryGridSection = ({
             {data.rows.map((row: SummaryRow, index: number) => (
               <tr
                 key={index}
-                className='border-t border-border/30 hover:bg-muted/20 transition-colors'
+                className="border-t border-border/30 hover:bg-muted/20 transition-colors"
               >
-                <td className='px-6 py-4 text-foreground font-medium'>
+                <td className="px-6 py-4 text-foreground font-medium">
                   {row.media_type}
                 </td>
-                <td className='px-6 py-4 text-right text-chart-1 font-bold'>
-                  {row.total_clk_cnt?.toLocaleString() ?? '0'}
+                <td className="px-6 py-4 text-right text-chart-1 font-bold">
+                  {row.total_clk_cnt?.toLocaleString() ?? "0"}
                 </td>
-                <td className='px-6 py-4 text-right text-foreground'>
-                  {row.total_imp_cnt?.toLocaleString() ?? '0'}
+                <td className="px-6 py-4 text-right text-foreground">
+                  {row.total_imp_cnt?.toLocaleString() ?? "0"}
                 </td>
-                <td className='px-6 py-4 text-right text-foreground'>
-                  {row.total_cost?.toLocaleString() ?? '0'}
+                <td className="px-6 py-4 text-right text-foreground">
+                  {row.total_cost?.toLocaleString() ?? "0"}
                 </td>
-                <td className='px-6 py-4 text-right text-foreground'>
+                <td className="px-6 py-4 text-right text-foreground">
                   {row.total_ccnt}
                 </td>
-                <td className='px-6 py-4 text-right text-chart-4 font-bold'>
-                  {row.total_conv_amt?.toLocaleString() ?? '0'}
+                <td className="px-6 py-4 text-right text-chart-4 font-bold">
+                  {row.total_conv_amt?.toLocaleString() ?? "0"}
                 </td>
-                <td className='px-6 py-4 text-right text-foreground'>
+                <td className="px-6 py-4 text-right text-foreground">
                   {row.avg_cpc}
                 </td>
-                <td className='px-6 py-4 text-right text-chart-2 font-bold'>
+                <td className="px-6 py-4 text-right text-chart-2 font-bold">
                   {row.avg_ror}%
                 </td>
               </tr>

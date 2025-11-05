@@ -7,7 +7,11 @@ import {
   fetchHistoryGridData,
   fetchMonthlyReportSummaryData,
   CustomerInfo,
+  fetchSummeryComparisonData,
 } from "@/fetch/dashboard/report-api";
+import { SummaryData } from "@/components/dashboard/report-sections/SummaryGridSection";
+import { ComparisonData } from "@/components/dashboard/report-sections/ComparisonGridSection";
+import { HistoryData } from "@/components/dashboard/report-sections/HistoryGridSection";
 
 // 타입 정의
 interface Customer {
@@ -62,7 +66,7 @@ export const useSummaryGridDataQuery = (
   month: string,
   enabled: boolean
 ) => {
-  return useQuery<GridData, Error>({
+  return useQuery<SummaryData, Error>({
     queryKey: ["summaryGridData", customer_id, year, month],
     queryFn: () => {
       const accessToken =
@@ -81,7 +85,7 @@ export const useComparisonGridDataQuery = (
   month: string,
   enabled: boolean
 ) => {
-  return useQuery<GridData, Error>({
+  return useQuery<ComparisonData, Error>({
     queryKey: ["comparisonGridData", customer_id, year, month],
     queryFn: () => {
       const accessToken =
@@ -100,7 +104,7 @@ export const useHistoryGridDataQuery = (
   month: string,
   enabled: boolean
 ) => {
-  return useQuery<GridData, Error>({
+  return useQuery<HistoryData, Error>({
     queryKey: ["historyGridData", customer_id, year, month],
     queryFn: () => {
       const accessToken =
@@ -134,7 +138,27 @@ export const useMonthlyReportSummaryDataQuery = (
     enabled: enabled,
   });
 };
-
+export const useSummeryComparisonDataQuery = (
+  customer_id: string,
+  year: string,
+  month: string,
+  enabled: boolean
+) => {
+  return useQuery<GridData, Error>({
+    queryKey: ["summeryComparisonData", customer_id, year, month],
+    queryFn: () => {
+      const accessToken =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken") || ""
+          : "";
+      return fetchSummeryComparisonData(
+        { customer_id, year, month },
+        accessToken
+      );
+    },
+    enabled: enabled,
+  });
+};
 export const useCustomerInfo = () => {
   return useQuery<Customer[], Error>({
     queryKey: ["customerInfo"],

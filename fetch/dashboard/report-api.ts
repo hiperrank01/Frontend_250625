@@ -92,7 +92,7 @@ export const fetchMonthlyReportSummaryData = async (
 
 // 요약 그리드 데이터 조회
 export const fetchSummaryGridData = async (
-  data: { customer_id: string; year: string; month: string }, // Added customer_id
+  data: { customer_id: string; year: string; month: string },
   accessToken: string
 ) => {
   const res = await fetch(
@@ -109,6 +109,24 @@ export const fetchSummaryGridData = async (
   return res.json();
 };
 
+// 써머리 비교 대이터 조회
+export const fetchSummeryComparisonData = async (
+  data: { customer_id: string; year: string; month: string },
+  accessToken: string
+) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/ncc/monthly_report/monthly-campaing-report-summary/?customer_id=${data.customer_id}&year=${data.year}&month=${data.month}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  if (!res.ok) throw new Error("써머리 비교 대이터 조회 실패");
+  return res.json();
+};
 // 가능한 연도 조회
 export const fetchAvailableYears = async (accessToken: string) => {
   console.log("Fetching available years with token:", accessToken);

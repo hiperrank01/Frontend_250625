@@ -14,7 +14,7 @@ interface HistoryRow {
   avg_ror: number;
 }
 
-interface HistoryData {
+export interface HistoryData {
   rows: HistoryRow[];
 }
 

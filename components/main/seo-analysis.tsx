@@ -55,34 +55,35 @@ export const SeoAnalysis = () => {
       console.log(error);
     },
   });
-  const fetchMySlots = useCallback(async () => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) return;
+  //슬롯 조회 기능 추가 미정
+  // const fetchMySlots = useCallback(async () => {
+  //   const accessToken = localStorage.getItem("accessToken");
+  //   if (!accessToken) return;
 
-    if (!baseUrl) {
-      console.error("API URL이 설정되지 않았습니다.");
-      return;
-    }
+  //   if (!baseUrl) {
+  //     console.error("API URL이 설정되지 않았습니다.");
+  //     return;
+  //   }
 
-    try {
-      const response = await fetch(`${baseUrl}/api/slots/my_slots/`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+  //   try {
+  //     const response = await fetch(`${baseUrl}/api/slots/my_slots/`, {
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //     });
 
-      if (!response.ok) throw new Error("슬롯 목록 불러오기 실패");
+  //     if (!response.ok) throw new Error("슬롯 목록 불러오기 실패");
 
-      const data = await response.json();
-      setMySlots(data);
-    } catch (err) {
-      console.error("❌ 슬롯 조회 오류:", err);
-    }
-  }, [baseUrl]);
+  //     const data = await response.json();
+  //     setMySlots(data);
+  //   } catch (err) {
+  //     console.error("❌ 슬롯 조회 오류:", err);
+  //   }
+  // }, [baseUrl]);
 
-  useEffect(() => {
-    fetchMySlots();
-  }, [fetchMySlots]);
+  // useEffect(() => {
+  //   fetchMySlots();
+  // }, [fetchMySlots]);
 
   return (
     <div className="space-y-8">
@@ -170,7 +171,8 @@ export const SeoAnalysis = () => {
           </div>
         </div>
       )}
-      {mySlots.length > 0 && (
+      {/* 슬롯 조회 기능 추가 미정 */}
+      {/* {mySlots.length > 0 && (
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">📦 내 분석 슬롯</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -188,7 +190,7 @@ export const SeoAnalysis = () => {
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
       <Button className="w-full mt-4">
         <Download className="w-4 h-4 mr-2" />

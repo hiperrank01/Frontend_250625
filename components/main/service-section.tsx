@@ -43,7 +43,7 @@ export const ServiceSection = ({ setShowMembership }: ServiceSectionProps) => {
                         .map((item, index) => (
                           <p
                             key={index}
-                            className="text-base font-medium text-gray-600"
+                            className="text-base font-medium text-gray-600 [&_img]:w-3/4 [&_img]:h-auto [&_img]:object-contain [&_img]:mx-auto"
                           >
                             {item.content}
                           </p>

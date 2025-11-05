@@ -1,6 +1,6 @@
 import React from "react";
 
-interface RowData {
+export interface RowData {
   total_clk_cnt?: number;
   total_imp_cnt?: number;
   total_cost?: number;
@@ -11,14 +11,16 @@ interface RowData {
   type: string;
 }
 
-interface ComparisonGridSection {
-  data: {
-    rows: RowData[];
-  };
+export interface ComparisonData {
+  rows: RowData[];
+}
+
+interface ComparisonGridSectionProps {
+  data: ComparisonData | undefined;
   error: Error | null;
 }
 
-const ComparisonGridSection: React.FC<ComparisonGridSection> = ({
+const ComparisonGridSection: React.FC<ComparisonGridSectionProps> = ({
   data,
   error,
 }) => {
