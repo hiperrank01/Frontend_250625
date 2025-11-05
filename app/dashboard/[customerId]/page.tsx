@@ -24,7 +24,11 @@ import { HistoryGridSection } from "@/components/dashboard/report-sections/Histo
 import { MonthlyReportSummarySection } from "@/components/dashboard/report-sections/MonthlyReportSummarySection";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 
-const CustomerReportPage = ({ params }: { params: { customerId: string } }) => {
+const CustomerReportPage = async ({
+  params,
+}: {
+  params: { customerId: string };
+}) => {
   const { customerId } = params;
   const [year, setYear] = useState<string | undefined>();
   const [month, setMonth] = useState("9");
