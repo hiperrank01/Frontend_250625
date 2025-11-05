@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -24,12 +25,9 @@ import { HistoryGridSection } from "@/components/dashboard/report-sections/Histo
 import { MonthlyReportSummarySection } from "@/components/dashboard/report-sections/MonthlyReportSummarySection";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 
-const CustomerReportPage = async ({
-  params,
-}: {
-  params: { customerId: string };
-}) => {
-  const { customerId } = params;
+const CustomerReportPage = () => {
+  const params = useParams<{ customerId: string }>();
+  const customerId = params?.customerId as string;
   const [year, setYear] = useState<string | undefined>();
   const [month, setMonth] = useState("9");
 
