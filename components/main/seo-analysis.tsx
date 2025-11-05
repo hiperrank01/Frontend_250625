@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { Search, Download } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -18,14 +18,14 @@ interface ProductInfo {
   product_name: string;
 }
 
-interface Slot {
-  id: number | string;
-  platform: {
-    name: string;
-  };
-  keyword: string;
-  rank: number;
-}
+// interface Slot {
+//   id: number | string;
+//   platform: {
+//     name: string;
+//   };
+//   keyword: string;
+//   rank: number;
+// }
 
 export const SeoAnalysis = () => {
   // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
