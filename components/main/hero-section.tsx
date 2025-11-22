@@ -76,6 +76,11 @@ export default function HeroSection() {
                 소프트웨어 개발, 전략 수립, 효과적인 협업&quot;
               </blockquote>
             </div>
+            <div className="group">
+              <blockquote className="hover:-rotate-1 transition-transform duration-300 text-base md:text-base text-black font-medium bg-gray-50 px-4 py-3 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-100 transition-all duration-300 italic">
+                &quot;대표가 웹사이트를 만들 줄 압니다.&quot;
+              </blockquote>
+            </div>
           </div>
         </div>
         <div
